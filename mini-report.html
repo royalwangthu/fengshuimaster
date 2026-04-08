@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FengShuiMaster — Your Free Mini Report</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D50CHKRFNK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D50CHKRFNK');</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","w7fzinaaa3");</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E0E12;
+  --ink:rgba(255,252,248,.92);--mu:rgba(255,252,248,.68);--hi:rgba(255,252,248,.28);
+  --gold:#E2AA3A;--gold-lo:rgba(226,170,58,.18);
+  --r:16px;
+}
+body{font-family:'DM Sans',sans-serif;font-weight:400;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.bg{position:fixed;inset:0;z-index:0;background:#0E0E12}
+.bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(180,140,40,.25) 0%,transparent 50%),radial-gradient(ellipse at 80% 60%,rgba(200,160,50,.15) 0%,transparent 45%),radial-gradient(ellipse at 50% 100%,rgba(120,90,30,.2) 0%,transparent 50%),rgba(6,6,8,.65)}
+.container{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:2rem 1.5rem 3rem}
+.header{display:flex;align-items:center;gap:8px;margin-bottom:2rem}
+.logo-icon{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,rgba(226,170,58,.5),rgba(212,163,64,.3));border:1px solid rgba(226,170,58,.3);display:flex;align-items:center;justify-content:center;font-size:14px}
+.logo-text{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(135deg,#FFD466,#C49A30);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.badge{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(110,210,130,.8);background:rgba(110,210,130,.08);border:1px solid rgba(110,210,130,.2);padding:3px 10px;border-radius:100px}
+.card{background:linear-gradient(145deg,rgba(18,16,12,.55) 0%,rgba(12,10,8,.6) 100%);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(226,170,58,.15);border-radius:var(--r);box-shadow:0 4px 24px rgba(0,0,0,.35);position:relative;overflow:hidden;margin-bottom:1rem}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(226,170,58,.20),transparent);pointer-events:none}
+.card::after{content:'';position:absolute;top:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(226,170,58,.12) 0%,transparent 70%);pointer-events:none}
+.score-panel{padding:1.8rem;display:flex;align-items:center;gap:1.8rem}
+.score-ring{position:relative;width:130px;height:130px;flex-shrink:0}
+.score-ring svg{width:100%;height:100%}
+.score-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.score-num{font-size:40px;font-weight:700;letter-spacing:-.03em;background:linear-gradient(145deg,#FFD466,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px rgba(226,170,58,.5));line-height:1}
+.score-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(226,170,58,.5);margin-top:4px}
+.score-meta{flex:1}
+.score-headline{font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3;margin-bottom:.5rem;font-family:'Playfair Display',Georgia,serif;font-style:italic;color:var(--gold)}
+.score-desc{font-size:13px;color:var(--mu);line-height:1.85;font-weight:300;max-width:520px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(226,170,58,.6);margin-bottom:.6rem;display:flex;align-items:center;gap:8px;padding:0 1.5rem}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(226,170,58,.15),transparent)}
+.personality{padding:1.5rem}
+.personality-title{font-size:15px;font-weight:600;margin-bottom:.5rem;font-family:'Playfair Display',serif}
+.personality-text{font-size:13px;color:var(--mu);line-height:1.8;font-weight:300}
+.elements-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;padding:1rem 1.5rem}
+.el-item{text-align:center;padding:.8rem .5rem;border-radius:12px;background:rgba(226,170,58,.04);border:1px solid rgba(226,170,58,.08)}
+.el-icon{font-size:22px;margin-bottom:.3rem}
+.el-name{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.el-score{font-size:22px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:.2rem}
+.el-state{font-size:9px;color:var(--mu);font-weight:500}
+.remedy{display:flex;align-items:flex-start;gap:.85rem;padding:.9rem 1.5rem}
+.remedy+.remedy{border-top:1px solid rgba(226,170,58,.06)}
+.rem-num{width:26px;height:26px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:rgba(226,170,58,.08);border:1px solid rgba(226,170,58,.15);color:rgba(226,170,58,.7)}
+.rem-title{font-size:13px;font-weight:600;margin-bottom:.2rem}
+.rem-body{font-size:12px;color:var(--mu);line-height:1.6}
+.rem-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,190,60,.65);background:rgba(255,190,60,.06);border:1px solid rgba(255,190,60,.14);padding:2px 6px;border-radius:5px;margin-top:.35rem}
+.locked-section{position:relative;margin-bottom:1rem}
+.locked-content{filter:blur(5px);pointer-events:none;user-select:none;opacity:.6}
+.locked-overlay{position:absolute;inset:0;z-index:10;background:linear-gradient(to bottom,transparent 0%,rgba(8,8,10,.5) 20%,rgba(8,8,10,.95) 60%,rgba(8,8,10,1) 100%);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
+.lock-icon{font-size:32px;margin-bottom:.8rem;opacity:.6}
+.lock-title{font-size:16px;font-weight:700;margin-bottom:.4rem}
+.lock-desc{font-size:12px;color:var(--mu);margin-bottom:1.2rem;line-height:1.6;max-width:320px}
+.lock-items{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:1.2rem}
+.lock-item{font-size:10px;font-weight:600;color:rgba(226,170,58,.7);background:rgba(226,170,58,.06);border:1px solid rgba(226,170,58,.12);padding:3px 10px;border-radius:100px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border:none;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#0A0A0C;background:linear-gradient(135deg,rgba(212,163,64,.9),rgba(196,154,48,.85));box-shadow:0 0 0 1px rgba(226,190,100,.3) inset,0 8px 32px rgba(180,140,30,.5),0 0 60px rgba(212,163,64,.15);transition:all .25s;text-decoration:none}
+.cta-btn:hover{box-shadow:0 0 0 1px rgba(226,190,100,.4) inset,0 12px 40px rgba(180,140,30,.65),0 0 80px rgba(212,163,64,.3);transform:translateY(-2px)}
+.cta-price{font-size:12px;opacity:.7;margin-left:4px}
+.cta-original{text-decoration:line-through;opacity:.5;margin-right:4px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(226,170,58,.12),transparent);margin:1.5rem 0}
+/* Loading */
+.loading{text-align:center;padding:4rem 2rem}
+.loading-spinner{width:48px;height:48px;border:3px solid rgba(226,170,58,.15);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.2rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:13px;color:var(--mu);font-weight:300}
+.loading-sub{font-size:11px;color:var(--hi);margin-top:.4rem}
+/* Error */
+.error{text-align:center;padding:3rem 2rem}
+.error-text{font-size:14px;color:#FF6B6B;margin-bottom:1rem}
+.retry-btn{padding:10px 24px;border:1px solid rgba(226,170,58,.3);border-radius:10px;background:transparent;color:var(--gold);font-family:'DM Sans';font-size:13px;font-weight:600;cursor:pointer}
+/* Content hidden until loaded */
+#reportContent{display:none}
+@media(max-width:640px){
+  .score-panel{flex-direction:column;text-align:center}
+  .score-meta{text-align:center}
+  .elements-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="container">
+  <div class="header">
+    <div class="logo-icon">✦</div>
+    <span class="logo-text">FengShuiMaster</span>
+    <span class="badge">Free Preview</span>
+  </div>
+
+  <!-- Loading state -->
+  <div id="loadingState">
+    <div class="card">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="loadingText">Reading your energy signature...</div>
+        <div class="loading-sub">This takes about 10 seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error state -->
+  <div id="errorState" style="display:none">
+    <div class="card">
+      <div class="error">
+        <div class="error-text" id="errorText">Something went wrong.</div>
+        <button class="retry-btn" onclick="generateReport()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report content (hidden until loaded) -->
+  <div id="reportContent">
+    <!-- Score Panel -->
+    <div class="card">
+      <div class="score-panel">
+        <div class="score-ring">
+          <svg viewBox="0 0 120 120">
+            <defs><linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D4A340"/><stop offset="60%" stop-color="#E2AA3A"/><stop offset="100%" stop-color="#FF8080"/></linearGradient></defs>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(226,170,58,.07)" stroke-width="8"/>
+            <circle id="scoreArc" cx="60" cy="60" r="50" fill="none" stroke="url(#sg)" stroke-width="8" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)"/>
+          </svg>
+          <div class="score-center">
+            <div class="score-num" id="scoreNum">0</div>
+            <div class="score-label">Fengshui Score</div>
+          </div>
+        </div>
+        <div class="score-meta">
+          <div class="score-headline" id="headline"></div>
+          <div class="score-desc" id="description"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personality -->
+    <div class="section-label">Your Elemental Archetype</div>
+    <div class="card">
+      <div class="personality">
+        <div class="personality-title" id="personalityTitle"></div>
+        <div class="personality-text" id="personalityText"></div>
+      </div>
+    </div>
+
+    <!-- Five Elements -->
+    <div class="section-label">Five Elements</div>
+    <div class="card">
+      <div class="elements-grid" id="elementsGrid"></div>
+    </div>
+
+    <!-- 3 Free Remedies -->
+    <div class="section-label">Top 3 Remedies (Free)</div>
+    <div class="card" id="remediesCard"></div>
+
+    <!-- Share Card -->
+    <div class="section-label">Share Your Reading</div>
+    <div class="card" id="shareSection" style="display:none">
+      <div style="padding:1.5rem;text-align:center">
+        <div id="shareCardVisual" style="background:rgba(9,8,10,.67);border-radius:12px;border:1px solid rgba(226,170,58,.25);padding:1.5rem;margin-bottom:1rem;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 8%,rgba(226,170,58,.14) 0%,transparent 45%);pointer-events:none"></div>
+          <div style="position:relative;z-index:1">
+            <div style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(135deg,#FFD466,#C49A30);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.6rem">✦ FengShuiMaster</div>
+            <div style="font-size:13px;font-weight:300;color:var(--mu);margin-bottom:.3rem">My feng shui element is</div>
+            <div id="shareElement" style="font-size:28px;font-weight:700;font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:.2rem"></div>
+            <div style="font-size:11px;color:var(--mu)">Score: <span id="shareScore" style="color:var(--gold);font-weight:700"></span>/100</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+          <button onclick="shareTwitter()" style="padding:8px 16px;border-radius:8px;border:1px solid rgba(226,170,58,.2);background:transparent;color:var(--ink);font-family:'DM Sans';font-size:12px;font-weight:600;cursor:pointer">𝕏 Share</button>
+          <button onclick="shareFacebook()" style="padding:8px 16px;border-radius:8px;border:1px solid rgba(226,170,58,.2);background:transparent;color:var(--ink);font-family:'DM Sans';font-size:12px;font-weight:600;cursor:pointer">Facebook</button>
+          <button onclick="copyLink(this)" style="padding:8px 16px;border-radius:8px;border:1px solid rgba(226,170,58,.2);background:transparent;color:var(--ink);font-family:'DM Sans';font-size:12px;font-weight:600;cursor:pointer">Copy Link</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Locked section -->
+    <div class="locked-section">
+      <div class="locked-content">
+        <div class="section-label">Room-by-Room Analysis</div>
+        <div class="card" style="min-height:180px;padding:1.5rem">
+          <div style="font-size:14px;font-weight:600;margin-bottom:.5rem">Office — Command Your Creative Flow</div>
+          <div style="font-size:12px;color:var(--mu);line-height:1.6">Your office rests in the powerful Sheng Qi position, channeling the most auspicious energy for career growth.</div>
+          <div style="margin-top:1rem;font-size:14px;font-weight:600;margin-bottom:.5rem">Bedroom — Rest in Healing Light</div>
+          <div style="font-size:12px;color:var(--mu);line-height:1.6">Your bedroom embraces the gentle Tian Yi position, the celestial healer.</div>
+          <div style="margin-top:1rem;font-size:14px;font-weight:600;margin-bottom:.5rem">Living Room — Redirect Stagnant Currents</div>
+          <div style="font-size:12px;color:var(--mu);line-height:1.6">The eastern living room sits in the Wu Gui position, creating subtle tension.</div>
+        </div>
+      </div>
+      <div class="locked-overlay">
+        <div class="lock-icon">🔒</div>
+        <div class="lock-title">Unlock Your Full Report</div>
+        <div class="lock-desc">Your free preview includes your score, personality, elements, and 3 remedies. Upload your floor plan and unlock:</div>
+        <div class="lock-items">
+          <span class="lock-item">6 Room Analysis</span>
+          <span class="lock-item">5 Remedies</span>
+          <span class="lock-item">Plant Guide</span>
+          <span class="lock-item">Auspicious Dates</span>
+          <span class="lock-item">Energy Flow Map</span>
+          <span class="lock-item">Share Card</span>
+        </div>
+        <a href="https://buy.stripe.com/aFa28t3Wsdno27b7EF8Ra01" class="cta-btn" id="ctaBtn" onclick="if(window.gtag)gtag('event','begin_checkout',{event_category:'conversion',value:19.50,currency:'USD'})">
+          Unlock Full Report — <span class="cta-original">$69</span> <span>$19.50</span>
+          <span class="cta-price">Early Bird — use code EARLYBIRD</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var elColors = {
+  wood:  { icon: '🌿', color: '#6ECF7A' },
+  fire:  { icon: '🔥', color: '#FF6B6B' },
+  earth: { icon: '🏔️', color: '#D4A340' },
+  metal: { icon: '⚔️', color: '#C0C0C0' },
+  water: { icon: '💧', color: '#5B9BD5' }
+};
+
+function renderMiniReport(data) {
+  // Score
+  var score = Math.min(data.score || 0, 92);
+  document.getElementById('scoreNum').textContent = score;
+  var arc = document.getElementById('scoreArc');
+  if (arc) arc.style.strokeDashoffset = String(314 - Math.round(314 * score / 100));
+
+  // Headline + description
+  document.getElementById('headline').textContent = data.headline || '';
+  document.getElementById('description').textContent = data.description || '';
+
+  // Personality
+  if (data.personality) {
+    document.getElementById('personalityTitle').textContent = data.personality.title || '';
+    document.getElementById('personalityText').textContent = data.personality.text || '';
+  }
+
+  // Elements
+  if (data.elements) {
+    var grid = document.getElementById('elementsGrid');
+    var keys = ['wood', 'fire', 'earth', 'metal', 'water'];
+    grid.innerHTML = keys.map(function(k) {
+      var el = data.elements[k] || { score: 50, state: 'Balanced' };
+      var c = elColors[k];
+      return '<div class="el-item">'
+        + '<div class="el-icon">' + c.icon + '</div>'
+        + '<div class="el-name" style="color:' + c.color + '">' + k.charAt(0).toUpperCase() + k.slice(1) + '</div>'
+        + '<div class="el-score" style="color:' + c.color + '">' + el.score + '</div>'
+        + '<div class="el-state">' + el.state + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  // Remedies
+  if (data.remedies && data.remedies.length) {
+    var card = document.getElementById('remediesCard');
+    card.innerHTML = data.remedies.map(function(r, i) {
+      return '<div class="remedy">'
+        + '<div class="rem-num">' + (i + 1) + '</div>'
+        + '<div>'
+        + '<div class="rem-title">' + r.title + '</div>'
+        + '<div class="rem-body">' + r.body + '</div>'
+        + '<div class="rem-tag">' + r.tag + '</div>'
+        + '</div></div>';
+    }).join('');
+  }
+
+  // Show content, hide loading
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('reportContent').style.display = 'block';
+
+  // Animate score count-up
+  var cur = 0, inc = score / (1400 / 16);
+  var numEl = document.getElementById('scoreNum');
+  var t = setInterval(function() {
+    cur = Math.min(cur + inc, score);
+    numEl.textContent = Math.round(cur);
+    if (cur >= score) clearInterval(t);
+  }, 16);
+
+  // Share card
+  var shareSection = document.getElementById('shareSection');
+  if (shareSection) {
+    // Find dominant element
+    var maxEl = 'earth', maxScore = 0;
+    if (data.elements) {
+      ['wood','fire','earth','metal','water'].forEach(function(k) {
+        if (data.elements[k] && data.elements[k].score > maxScore) { maxScore = data.elements[k].score; maxEl = k; }
+      });
+    }
+    var elEmoji = { wood:'🌿 Wood', fire:'🔥 Fire', earth:'🏔️ Earth', metal:'⚔️ Metal', water:'💧 Water' };
+    document.getElementById('shareElement').textContent = elEmoji[maxEl] || 'Earth';
+    document.getElementById('shareScore').textContent = score;
+    shareSection.style.display = 'block';
+    window._shareText = 'My feng shui element is ' + (elEmoji[maxEl]||'Earth') + '! Score: ' + score + '/100. Get your free reading:';
+    window._shareUrl = 'https://fengshuimaster.pro';
+  }
+
+  // GA4 event
+  if (window.gtag) gtag('event', 'free_report_view', { event_category: 'engagement', value: score });
+}
+
+function generateReport() {
+  document.getElementById('loadingState').style.display = 'block';
+  document.getElementById('errorState').style.display = 'none';
+  document.getElementById('reportContent').style.display = 'none';
+
+  var raw = localStorage.getItem('fengshuimaster_data');
+  if (!raw) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('errorState').style.display = 'block';
+    document.getElementById('errorText').textContent = 'No data found. Please complete the onboarding first.';
+    setTimeout(function() { window.location.href = 'onboarding.html'; }, 3000);
+    return;
+  }
+
+  var userData;
+  try { userData = JSON.parse(raw); } catch(e) {
+    window.location.href = 'onboarding.html';
+    return;
+  }
+
+  var direction = userData.direction || 'South';
+  var birthYear = (userData.dob || '1990').split('-')[0];
+  var focus = (userData.concerns && userData.concerns.length) ? userData.concerns[0] : 'general';
+
+  // Loading text animation
+  var msgs = ['Reading your energy signature...', 'Calculating your Ming Gua...', 'Mapping five element balance...', 'Preparing your insights...'];
+  var mi = 0;
+  var loadingInterval = setInterval(function() {
+    mi = (mi + 1) % msgs.length;
+    document.getElementById('loadingText').textContent = msgs[mi];
+  }, 2500);
+
+  var MAX_RETRIES = 2;
+  var attempt = 0;
+
+  function callAPI() {
+    attempt++;
+    fetch('/api/mini-report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ direction: direction, birthYear: birthYear, focus: focus })
+    })
+    .then(function(res) {
+      if (!res.ok) return res.json().then(function(d) { throw new Error(d.error || 'Server error'); });
+      return res.json();
+    })
+    .then(function(geminiResp) {
+      clearInterval(loadingInterval);
+      var text = '';
+      if (geminiResp.candidates && geminiResp.candidates[0] && geminiResp.candidates[0].content && geminiResp.candidates[0].content.parts && geminiResp.candidates[0].content.parts[0]) {
+        text = geminiResp.candidates[0].content.parts[0].text;
+      } else { throw new Error('Empty response'); }
+
+      text = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+      var data = JSON.parse(text);
+      renderMiniReport(data);
+    })
+    .catch(function(err) {
+      clearInterval(loadingInterval);
+      if (attempt < MAX_RETRIES) { callAPI(); return; }
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('errorState').style.display = 'block';
+      document.getElementById('errorText').textContent = 'Could not generate report: ' + err.message;
+    });
+  }
+
+  callAPI();
+}
+
+function shareTwitter() {
+  var t = encodeURIComponent(window._shareText || '');
+  var u = encodeURIComponent(window._shareUrl || 'https://fengshuimaster.pro');
+  window.open('https://twitter.com/intent/tweet?text=' + t + '&url=' + u, '_blank');
+  if (window.gtag) gtag('event', 'share', { method: 'twitter', event_category: 'engagement' });
+}
+function shareFacebook() {
+  var u = encodeURIComponent(window._shareUrl || 'https://fengshuimaster.pro');
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + u, '_blank');
+  if (window.gtag) gtag('event', 'share', { method: 'facebook', event_category: 'engagement' });
+}
+function copyLink(btn) {
+  navigator.clipboard.writeText('https://fengshuimaster.pro').then(function() {
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy Link'; }, 2000);
+  });
+  if (window.gtag) gtag('event', 'share', { method: 'copy_link', event_category: 'engagement' });
+}
+
+// Auto-start
+generateReport();
+</script>
+</body>
+</html>

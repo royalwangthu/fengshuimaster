@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Demo Setup</title></head>
+<body>
+<script>
+// Set fake user data so dashboard doesn't redirect
+localStorage.setItem('fengshuimaster_data', JSON.stringify({
+  dob: '1990-03-15',
+  birthHour: '8',
+  birthMinute: '00',
+  location: 'New York, USA',
+  direction: 'South',
+  concerns: ['Clarity'],
+  email: 'demo@test.com'
+}));
+
+// Set cached report with placeholder data
+localStorage.setItem('fengshuimaster_report', JSON.stringify({
+  score: 74,
+  headline: "Your Earth Soul Blooms: Clarity in Aligned Spaces",
+  description: "With a Ming Gua of 2 (Kun Earth), you embody the nurturing stability of the Earth element. Your home's Northeast facing direction aligns beautifully with your West Group energy, establishing an auspicious base. Your master bedroom rests in the harmonious Tian Yi position (NW) while your office draws powerful Sheng Qi energy (NE), guiding your quest for clarity.",
+  subtitle: "Eight Mansions Analysis Complete",
+  quote: "The greatest journey is one that leads you home to your true self.",
+  roomPositions: { bedroom: "NW", office: "NE", living: "E", kitchen: "SW", bathroom: "SE" },
+  flow: {
+    title: "Unlocking Your Clarity Flow",
+    desc: "The energy in your sacred space holds immense potential for grounding and insight. With a matching Life Gua and House Gua, you've naturally established a deep root of harmony."
+  },
+  zones: { wealth: 68, love: 72, career: 81, family: 65 },
+  elements: {
+    wood:  { score: 62, state: "Rising" },
+    fire:  { score: 45, state: "Waning" },
+    earth: { score: 88, state: "Dominant" },
+    metal: { score: 71, state: "Balanced" },
+    water: { score: 53, state: "Needs Support" }
+  },
+  kpis: [
+    { label: "Clarity & Intuition",    value: 78, sub: "Strong Tian Yi influence",    trend: "+12% vs baseline", trendDir: "up" },
+    { label: "Well-being & Vitality",  value: 72, sub: "Earth element grounding",     trend: "+8% vs baseline",  trendDir: "up" },
+    { label: "Career Prosperity",      value: 81, sub: "Sheng Qi in office sector",   trend: "+15% vs baseline", trendDir: "up" }
+  ],
+  rooms: [
+    { type: "strength", name: "Office",        headline: "Command Your Creative Flow",      body: "Your office rests in the powerful Sheng Qi position, channeling the most auspicious energy for career growth and mental clarity. This is where your ambitions find their wings.", tag: "Sheng Qi" },
+    { type: "strength", name: "Kitchen",       headline: "Nourishment Meets Intention",      body: "Positioned in the Southwest, your kitchen suppresses the Huo Hai energy beautifully. Cooking here becomes an act of alchemy, transforming raw potential into sustenance.", tag: "Well Placed" },
+    { type: "strength", name: "Master Bedroom", headline: "Rest in Healing Light",           body: "Your bedroom embraces the gentle Tian Yi position, the celestial healer. Sleep here is not merely rest — it is restoration at the deepest level.", tag: "Tian Yi" },
+    { type: "improvement", name: "Living Room",  headline: "Redirect Stagnant Currents",     body: "The eastern living room sits in the Wu Gui position, creating subtle tension that manifests as restlessness. A brass wind chime near the entrance can help dissolve this heavy qi.", impact: "Reduces anxiety by 40%", tag: "Wu Gui" },
+    { type: "improvement", name: "Bathroom",      headline: "Seal the Energy Drain",          body: "Your bathroom in the Southeast occupies the Liu Sha zone, causing a slow leak of romantic and creative energy. Keep the door closed and add a small earth-element crystal.", impact: "Preserves relationship harmony", tag: "Liu Sha" },
+    { type: "improvement", name: "Entrance",       headline: "Strengthen the Mouth of Qi",     body: "Your front door faces South, drawing Fu Wei energy — stable but uninspiring. A vibrant doormat and upward-growing plants can activate this threshold.", impact: "Boosts incoming opportunities", tag: "Fu Wei" }
+  ],
+  remedies: [
+    { title: "Place a brass wind chime in the living room",    body: "Metal energy dissolves the fiery Wu Gui influence, calming the eastern sector and inviting peaceful conversations.", tag: "Urgent" },
+    { title: "Add a water feature near the entrance",          body: "Moving water activates stagnant Fu Wei energy at your front door, welcoming fresh opportunities into your life.", tag: "High Impact" },
+    { title: "Use earth-tone textiles in the bedroom",         body: "Sandy beiges and warm terracotta deepen the Tian Yi healing energy where you sleep.", tag: "Essential" },
+    { title: "Introduce wood element plants in the SE corner",  body: "Living greenery in the bathroom area counteracts the draining Liu Sha energy.", tag: "Recommended" },
+    { title: "Clear clutter from the center of your home",      body: "The heart of your dwelling is the Tai Ji — keeping it open allows all five elements to circulate freely.", tag: "Balance" }
+  ],
+  plants: [
+    { icon: "\ud83c\udf3f", name: "Peace Lily",    zone: "Living Room (E)",  body: "Purifies stagnant Wu Gui energy and promotes calm, clear thinking." },
+    { icon: "\ud83c\udf8b", name: "Lucky Bamboo",  zone: "Office (NE)",      body: "Amplifies Sheng Qi for career growth and creative breakthroughs." },
+    { icon: "\ud83c\udf38", name: "Orchid",         zone: "Bedroom (NW)",     body: "Enhances the Tian Yi healing energy and deepens romantic connection." },
+    { icon: "\ud83e\udeb4", name: "Jade Plant",     zone: "Entrance (S)",     body: "Symbolizes prosperity and activates wealth energy at the mouth of qi." }
+  ],
+  dates: {
+    title: "Your Optimal Windows",
+    best: { month: "Apr 2026", day: "18", weekday: "Saturday", time: "9:00-11:00 AM", reason: "Favorable Tian Yi alignment with your Kun energy", tags: ["Gua Aligned", "Auspicious"] },
+    secondary: [
+      { month: "May 2026", day: "03", weekday: "Sunday" },
+      { month: "May 2026", day: "17", weekday: "Sunday" },
+      { month: "Jun 2026", day: "06", weekday: "Saturday" },
+      { month: "Jun 2026", day: "21", weekday: "Sunday" }
+    ]
+  },
+  shareCard: {
+    status: "\u2726 74/100",
+    headline: "Your Earth Soul Blooms",
+    sub: "Eight Mansions Feng Shui Analysis",
+    topRemedy: "Place a brass wind chime in the living room to dissolve Wu Gui tension",
+    zones: [
+      { label: "Wealth",  direction: "SE", value: 68, status: "Growing" },
+      { label: "Career",  direction: "NE", value: 81, status: "Thriving" },
+      { label: "Health",  direction: "NW", value: 72, status: "Balanced" },
+      { label: "Love",    direction: "SW", value: 65, status: "Nurturing" }
+    ]
+  }
+}));
+
+// Redirect to dashboard
+window.location.href = 'dashboard.html?session_id=direct&admin_key=1228';
+</script>
+</body></html>

@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- GA loaded only after cookie consent -->
+<script>
+function loadGA(){
+  if(document.getElementById('ga-script'))return;
+  var s=document.createElement('script');s.id='ga-script';s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id=G-D50CHKRFNK';
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  window.gtag=gtag;gtag('js',new Date());gtag('config','G-D50CHKRFNK');
+}
+if(localStorage.getItem('cookieConsent')==='all'){loadGA();}
+</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","w7fzinaaa3");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FengShuiMaster — Read Your Home's Energy</title>
+<meta name="description" content="AI-powered Feng Shui analysis for your home. Upload your floor plan and get a personalized energy report with actionable remedies.">
+<meta property="og:title" content="FengShuiMaster — Read Your Home's Energy">
+<meta property="og:description" content="AI-powered Feng Shui analysis. Get your personalized home energy report for $19.90.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fengshuimaster.pro/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FengShuiMaster — Read Your Home's Energy">
+<meta name="twitter:description" content="AI-powered Feng Shui analysis. Upload your floor plan and get a personalized energy report.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&family=Fraunces:ital,wght@0,300;0,400;1,200;1,300;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --gold:#E2AA3A;--gold2:#C4820A;--gold-lo:rgba(226,170,58,.15);
+  --ink:rgba(255,252,248,.94);--mu:rgba(255,252,248,.5);--hi:rgba(255,252,248,.2);
+  --bg:#0A0806;
+  --glass:rgba(16,12,4,.62);--gb:rgba(226,170,58,.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── BG ── */
+.bg-wrap{position:fixed;inset:0;z-index:0}
+.bg-img{
+  width:100%;height:100%;
+  background:url("images/bg-texture.jpg") center center/cover no-repeat;
+}
+@media(max-width:768px){
+  .bg-img{background:url("images/bg-main.jpg") center center/cover no-repeat}
+}
+.bg-over{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%,rgba(180,120,0,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 80% 60% at 10% 50%,rgba(100,60,0,.3) 0%,transparent 50%),
+    radial-gradient(ellipse 80% 60% at 90% 50%,rgba(80,40,0,.25) 0%,transparent 50%),
+    linear-gradient(180deg,rgba(10,8,6,.72) 0%,rgba(10,8,6,.45) 35%,rgba(10,8,6,.78) 100%);
+}
+.bg-grain{
+  position:absolute;inset:0;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+
+/* ── GLASS ── */
+.g{
+  background:var(--glass);
+  border:1px solid var(--gb);
+  backdrop-filter:blur(32px) saturate(150%);
+  -webkit-backdrop-filter:blur(32px) saturate(150%);
+  border-radius:20px;position:relative;overflow:hidden;
+}
+.g::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(226,170,58,.28),transparent);pointer-events:none;z-index:1}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2.5rem;
+  background:rgba(10,8,6,.8);backdrop-filter:blur(40px);
+  border-bottom:1px solid rgba(226,170,58,.12);
+}
+.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+.logo-img{width:24px;height:24px;border-radius:7px;overflow:hidden;flex-shrink:0;border:1px solid rgba(226,170,58,.25);box-shadow:0 0 10px rgba(226,170,58,.12)}
+.logo-img img{width:100%;height:100%;object-fit:cover}
+.logo-name{font-size:13.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.logo-name em{font-style:normal;color:var(--gold)}
+.nav-r{display:flex;align-items:center;gap:.75rem}
+.nav-chip{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(226,170,58,.75);background:rgba(226,170,58,.08);border:1px solid rgba(226,170,58,.2);padding:4px 12px;border-radius:100px;display:flex;align-items:center;gap:5px}
+.nav-chip-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px rgba(226,170,58,.8);animation:glow 2s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-cta{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;
+  padding:.6rem 1.4rem;border-radius:100px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#0A0806;transition:opacity .15s,transform .15s;
+  box-shadow:0 4px 16px rgba(226,170,58,.3);}
+.nav-cta:hover{opacity:.88;transform:scale(1.02)}
+@media(max-width:600px){nav{padding:.85rem 1.25rem}.nav-chip{display:none}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:calc(64px + 2.5rem) 1.5rem 3rem;
+}
+
+/* ── GLOW HALO ── */
+.hero-halo{
+  position:absolute;
+  width:700px;height:300px;
+  top:50%;left:50%;transform:translate(-50%,-60%);
+  background:radial-gradient(ellipse,rgba(226,170,58,.18) 0%,rgba(180,100,0,.1) 35%,transparent 70%);
+  filter:blur(40px);
+  pointer-events:none;animation:haloBreath 5s ease-in-out infinite;
+  z-index:0;
+}
+@keyframes haloBreath{0%,100%{opacity:.6;transform:translate(-50%,-60%) scale(1)}50%{opacity:1;transform:translate(-50%,-60%) scale(1.08)}}
+
+/* ── TAIJI ── */
+.hero-orb{
+  position:relative;width:160px;height:160px;margin:0 auto 2.25rem;
+  animation:up .9s ease both;z-index:1;
+}
+.orb-ring{position:absolute;border-radius:50%;pointer-events:none;animation:ringPulse 4s ease-in-out infinite}
+.r1{inset:-10px;border:1px solid rgba(226,170,58,.22)}
+.r2{inset:-22px;border:1px solid rgba(226,170,58,.1);animation-delay:.8s}
+.r3{inset:-38px;border:1px solid rgba(226,170,58,.06);animation-delay:1.6s}
+@keyframes ringPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.04)}}
+.orb-img{width:160px;height:160px;border-radius:50%;object-fit:cover;
+  filter:drop-shadow(0 0 28px rgba(226,170,58,.4)) drop-shadow(0 0 56px rgba(180,100,0,.25));
+  animation:orbFloat 7s ease-in-out infinite;position:relative;z-index:1;}
+@keyframes orbFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(5deg)}}
+
+/* ── TITLE ── */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(226,170,58,.8);
+  background:rgba(226,170,58,.07);border:1px solid rgba(226,170,58,.18);
+  backdrop-filter:blur(16px);padding:5px 16px;border-radius:100px;
+  margin-bottom:1.75rem;
+  animation:up .9s .05s ease both;z-index:1;position:relative;
+}
+.hero-badge-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold)}
+
+.hero-h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(40px,6.5vw,80px);
+  font-weight:300;line-height:1.04;letter-spacing:-.03em;
+  margin-bottom:.75rem;
+  animation:up .9s .1s ease both;
+  position:relative;z-index:1;
+}
+.hero-h1 .gold{
+  font-style:italic;font-weight:200;
+  background:linear-gradient(135deg,#FFF0C0,#E2AA3A,#C4820A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 24px rgba(226,170,58,.55));
+}
+.hero-sub{
+  font-size:clamp(14px,1.8vw,18px);color:var(--mu);font-weight:300;
+  line-height:1.8;max-width:500px;margin:0 auto 2.5rem;
+  animation:up .9s .18s ease both;z-index:1;position:relative;
+}
+.hero-sub strong{color:var(--ink);font-weight:500}
+
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HERO BTNS ── */
+.hero-btns{
+  display:flex;flex-direction:column;align-items:center;gap:.85rem;
+  width:100%;max-width:300px;margin:0 auto 4rem;
+  animation:up .9s .26s ease both;z-index:1;position:relative;
+}
+.btn-gold{
+  display:block;width:100%;padding:1.1rem 1.5rem;border:none;border-radius:100px;
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;
+  background:linear-gradient(135deg,#E2AA3A 0%,#F5D07A 40%,#C4820A 100%);
+  background-size:200% auto;
+  color:#0A0806;letter-spacing:.01em;
+  box-shadow:0 0 0 1px rgba(255,220,100,.3) inset,0 8px 32px rgba(180,120,0,.45),0 0 60px rgba(226,170,58,.2);
+  animation:goldShimmer 2.8s linear infinite;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn-gold:hover{transform:scale(1.02);box-shadow:0 0 0 1px rgba(255,220,100,.4) inset,0 10px 40px rgba(180,120,0,.55),0 0 80px rgba(226,170,58,.28)}
+.btn-gold:active{transform:scale(.97)}
+@keyframes goldShimmer{to{background-position:200% center}}
+.btn-ghost{
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;
+  color:rgba(226,170,58,.5);background:none;border:none;cursor:pointer;
+  display:flex;align-items:center;gap:.35rem;transition:color .2s;letter-spacing:.04em;
+}
+.btn-ghost:hover{color:rgba(226,170,58,.8)}
+
+/* ── FLIP CARDS ── */
+.flip-row{
+  display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap;
+  margin-bottom:5rem;position:relative;z-index:1;
+  animation:up .9s .35s ease both;padding:0 1.5rem;
+}
+.flip-card{
+  width:160px;height:140px;perspective:800px;cursor:pointer;
+  flex-shrink:0;
+}
+@media(max-width:560px){.flip-card{width:calc(33% - 1rem);min-width:100px;height:120px}}
+.flip-inner{
+  width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+.flip-card:hover .flip-inner{transform:rotateY(180deg)}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-f,.flip-b{
+  position:absolute;inset:0;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:1.25rem 1rem;text-align:center;
+}
+.flip-f{
+  background:rgba(16,12,4,.65);
+  border:1px solid rgba(226,170,58,.2);
+  backdrop-filter:blur(28px);
+  box-shadow:0 2px 0 rgba(226,170,58,.08) inset,0 16px 40px rgba(0,0,0,.5);
+}
+.flip-f::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(226,170,58,.3),transparent)}
+.flip-b{
+  background:linear-gradient(145deg,rgba(40,28,4,.95),rgba(24,16,2,.98));
+  border:1px solid rgba(226,170,58,.3);
+  backdrop-filter:blur(28px);
+  transform:rotateY(180deg);
+  box-shadow:0 0 0 1px rgba(255,220,80,.12) inset;
+}
+.flip-b::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,220,80,.35),transparent)}
+.flip-num{
+  font-family:'Fraunces',serif;font-size:38px;font-weight:300;line-height:1;
+  background:linear-gradient(145deg,#FFF5D0,#E2AA3A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 12px rgba(226,170,58,.4));
+  margin-bottom:.3rem;
+}
+@media(max-width:560px){.flip-num{font-size:28px}}
+.flip-unit{font-size:18px;vertical-align:super;margin-left:1px}
+.flip-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(226,170,58,.5)}
+.flip-b-title{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:.4rem;letter-spacing:.04em}
+.flip-b-body{font-size:11px;color:var(--mu);line-height:1.55;font-weight:300}
+
+/* ── HOW ── */
+.section{position:relative;z-index:1;padding:0 1.5rem 4rem;max-width:1000px;margin:0 auto}
+.sec-eye{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(226,170,58,.55);text-align:center;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:.75rem}
+.sec-eye::before,.sec-eye::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(226,170,58,.2))}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:680px){.how-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+@keyframes fadeUpCard{
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.how-card{
+  padding:0;
+  border:1px solid rgba(226,170,58,.35) !important;
+  box-shadow:inset 0 1px 0 rgba(226,170,58,.15);
+  transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;
+  opacity:0;transform:translateY(32px);
+  overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;
+}
+.how-card.card-visible{animation:fadeUpCard .65s cubic-bezier(.22,.8,.36,1) forwards}
+.how-card:hover{
+  border-color:rgba(226,170,58,.75) !important;
+  box-shadow:0 0 22px rgba(226,170,58,.12),inset 0 1px 0 rgba(226,170,58,.25);
+  transform:translateY(-4px);
+}
+.how-card:hover .how-img{transform:scale(1.06)}
+.how-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  transition:transform .6s ease;
+  display:block;
+}
+.how-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(10,8,6,.15) 0%,
+    rgba(10,8,6,.55) 45%,
+    rgba(10,8,6,.88) 100%
+  );
+}
+.how-content{position:relative;z-index:1;padding:1.5rem 1.4rem 1.6rem}
+.how-n{
+  font-family:'Fraunces',serif;font-size:40px;font-weight:300;line-height:1;margin-bottom:.7rem;
+  background:linear-gradient(135deg,rgba(226,170,58,.85),rgba(196,130,10,.5));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.how-t{
+  font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:.45rem;
+  background:linear-gradient(90deg,#E2AA3A 0%,rgba(255,225,140,.9) 50%,#C4820A 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.how-b{font-size:12.5px;color:rgba(255,252,248,.65);line-height:1.7;font-weight:300}
+
+/* ── QUOTE ── */
+.quote{
+  position:relative;z-index:1;padding:6rem 1.5rem;text-align:center;
+  background:linear-gradient(135deg,rgba(40,28,4,.6),rgba(16,10,2,.5));
+  border-top:1px solid rgba(226,170,58,.1);border-bottom:1px solid rgba(226,170,58,.1);
+  overflow:hidden;
+}
+.quote::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 50%,rgba(226,170,58,.12) 0%,transparent 70%);pointer-events:none}
+.quote-line{
+  font-family:'Cinzel Decorative','Fraunces',serif;font-style:normal;font-weight:700;
+  color:#E2AA3A;
+  -webkit-text-fill-color:unset;
+  text-shadow:
+    0 0 8px rgba(226,170,58,.6),
+    0 0 20px rgba(226,170,58,.35),
+    0 0 40px rgba(226,170,58,.2),
+    0 0 80px rgba(196,130,10,.15);
+  position:relative;z-index:2;
+  display:block;
+}
+.quote-line1{
+  font-size:clamp(22px,4vw,42px);
+  color:rgba(255,252,248,.85);
+  -webkit-text-fill-color:unset;
+  text-shadow:0 0 20px rgba(255,252,248,.15);
+  margin-bottom:.5rem;
+  animation:quoteGlow 3s ease-in-out infinite alternate;
+}
+.quote-line2{
+  font-size:clamp(26px,5vw,52px);
+  background:linear-gradient(135deg,#FFF0C0,#E2AA3A,#C4820A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 24px rgba(226,170,58,.55));
+  animation:quoteGlow2 3s ease-in-out infinite alternate;
+}
+@keyframes quoteGlow{
+  0%{text-shadow:0 0 10px rgba(255,252,248,.1),0 0 30px rgba(226,170,58,.1)}
+  100%{text-shadow:0 0 20px rgba(255,252,248,.2),0 0 50px rgba(226,170,58,.2)}
+}
+@keyframes quoteGlow2{
+  0%{filter:drop-shadow(0 0 20px rgba(226,170,58,.4))}
+  100%{filter:drop-shadow(0 0 40px rgba(226,170,58,.7))}
+}
+/* golden floating orbs */
+.quote-particles{position:absolute;inset:-20%;pointer-events:none;overflow:hidden;z-index:1;animation:particlesRotate 60s linear infinite}
+@keyframes particlesRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.sparkle{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(226,170,58,.9) 0%,rgba(226,170,58,.3) 40%,transparent 70%);
+  box-shadow:0 0 6px 2px rgba(226,170,58,.4);
+  animation:sparkleFloat linear infinite;
+  opacity:0;
+}
+.sparkle-lg{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(226,170,58,.5) 0%,rgba(226,170,58,.12) 50%,transparent 70%);
+  box-shadow:0 0 20px 8px rgba(226,170,58,.15);
+  animation:orbDrift ease-in-out infinite;
+  opacity:0;
+}
+@keyframes sparkleFloat{
+  0%  {opacity:0;transform:translateY(0) translateX(0) scale(.5)}
+  10% {opacity:1}
+  50% {opacity:.7;transform:translateY(-80px) translateX(20px) scale(1)}
+  90% {opacity:.2}
+  100%{opacity:0;transform:translateY(-160px) translateX(-15px) scale(.3)}
+}
+@keyframes orbDrift{
+  0%  {opacity:0;transform:translateY(20px) scale(.6)}
+  15% {opacity:.6}
+  50% {opacity:.4;transform:translateY(-40px) scale(1.1)}
+  85% {opacity:.15}
+  100%{opacity:0;transform:translateY(-100px) scale(.5)}
+}
+.quote-attr{font-size:10px;letter-spacing:.18em;color:rgba(226,170,58,.4);text-transform:uppercase;font-weight:600;position:relative;z-index:2;margin-top:1rem}
+
+/* ── FEATURES ── */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+.feat{padding:1.5rem}
+.feat-icon{font-size:22px;margin-bottom:.7rem;display:block}
+.feat-t{font-size:13.5px;font-weight:600;margin-bottom:.35rem;color:var(--ink)}
+.feat-b{font-size:12px;color:var(--mu);line-height:1.65;font-weight:300}
+.feat.star{background:rgba(30,20,2,.72);border-color:rgba(226,170,58,.3)}
+
+/* ── TESTIMONIALS ── */
+@keyframes gold-flow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.testi-headline-wrap{text-align:center;margin-bottom:3rem}
+.testi-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(226,170,58,.5);margin-bottom:1rem;
+  display:flex;align-items:center;justify-content:center;gap:.75rem;
+}
+.testi-eyebrow::before,.testi-eyebrow::after{
+  content:'';flex:1;max-width:60px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(226,170,58,.2));
+}
+.testi-headline{
+  font-family:'Fraunces',serif;
+  font-size:clamp(34px,5.5vw,62px);
+  font-weight:300;line-height:1.2;letter-spacing:.01em;
+  margin-bottom:.75rem;
+}
+.testi-headline em{
+  font-style:italic;font-weight:200;
+  background:linear-gradient(90deg,#FFE8A0,#E2AA3A,#FFF0C0,#C4820A,#FFE8A0);
+  background-size:300% 300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:gold-flow 4s ease infinite;
+  display:inline-block;padding-right:.1em;
+}
+.testi-headline-sub{
+  font-size:13px;color:rgba(255,252,248,.4);
+  font-weight:300;font-style:italic;letter-spacing:.03em;
+}
+.testi-sec{position:relative;z-index:1;padding:5rem 1.5rem;max-width:1060px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:880px){.testi-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.testi-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+.testi-card{
+  padding:1.75rem 1.5rem;display:flex;flex-direction:column;gap:.85rem;
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 0 1px rgba(226,170,58,.25) inset}
+.testi-stars{display:flex;gap:2px}
+.testi-star{color:var(--gold);font-size:13px;filter:drop-shadow(0 0 4px rgba(226,170,58,.4))}
+.testi-body{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:13.5px;color:rgba(255,252,248,.55);line-height:1.8;flex:1;
+}
+.testi-body::before{content:'\201C';font-family:'Fraunces',serif;font-size:32px;line-height:0;vertical-align:-12px;margin-right:2px;color:rgba(226,170,58,.35)}
+.testi-footer{display:flex;align-items:center;gap:.65rem;padding-top:.65rem;border-top:1px solid rgba(226,170,58,.08)}
+.testi-avatar-img{
+  width:40px;height:40px;border-radius:50%;object-fit:cover;
+  border:1.5px solid rgba(226,170,58,.3);
+  box-shadow:0 0 12px rgba(226,170,58,.15);
+  flex-shrink:0;
+}
+.testi-info{display:flex;flex-direction:column;gap:2px}
+.testi-name{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:.01em}
+.testi-role{font-size:9.5px;color:rgba(226,170,58,.45);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+
+/* ── WISDOM JOURNAL / BLOG ── */
+.blog-sec{position:relative;z-index:1;padding:5rem 1.5rem 4rem;max-width:1100px;margin:0 auto}
+.blog-header{text-align:center;margin-bottom:3.5rem}
+.blog-eyebrow{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;font-weight:500}
+.blog-headline{font-family:'Fraunces',serif;font-size:clamp(26px,4.5vw,48px);line-height:1.15;color:var(--ink);margin-bottom:.8rem}
+.blog-headline em{font-style:italic;color:var(--gold)}
+.blog-sub{font-size:15px;color:var(--mu);max-width:440px;margin:0 auto;line-height:1.6}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:768px){.blog-grid{grid-template-columns:1fr;gap:1.2rem}}
+.blog-card{
+  display:flex;flex-direction:column;padding:2rem 1.8rem 1.8rem;text-decoration:none;color:var(--ink);
+  transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;
+  position:relative;overflow:hidden;cursor:pointer;
+}
+.blog-card:hover{transform:translateY(-6px);border-color:rgba(226,170,58,.45);box-shadow:0 20px 60px rgba(226,170,58,.1)}
+.blog-card-body{flex:1;display:flex;flex-direction:column;position:relative;z-index:1}
+.blog-tag{
+  display:inline-block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(226,170,58,.25);border-radius:20px;
+  padding:3px 12px;margin-bottom:1rem;width:fit-content;font-weight:600;
+}
+.blog-card-title{font-family:'Fraunces',serif;font-size:18px;line-height:1.3;margin-bottom:.7rem;font-weight:400}
+.blog-card-desc{font-size:13.5px;line-height:1.6;color:var(--mu);flex:1;margin-bottom:1.2rem}
+.blog-card-link{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.blog-arrow{display:inline-block;transition:transform .3s ease}
+.blog-card:hover .blog-arrow{transform:translateX(5px)}
+
+/* ── Card aura: top-left colored glow ── */
+.blog-card-aura{
+  position:absolute;top:-30px;left:-30px;width:140px;height:140px;
+  border-radius:50%;filter:blur(50px);
+  opacity:.25;transition:opacity .45s ease;pointer-events:none;z-index:0;
+}
+.blog-card:hover .blog-card-aura{opacity:.5}
+/* Sleep / Bedroom — indigo-lavender */
+.blog-card--sleep .blog-card-aura{background:rgba(120,100,220,.8)}
+.blog-card--sleep .blog-tag{color:#a99de8;border-color:rgba(120,100,220,.35)}
+/* Door — warm amber-red */
+.blog-card--door .blog-card-aura{background:rgba(220,120,60,.8)}
+.blog-card--door .blog-tag{color:#e8a06a;border-color:rgba(220,120,60,.35)}
+/* Colors — emerald-teal */
+.blog-card--color .blog-card-aura{background:rgba(60,190,160,.8)}
+.blog-card--color .blog-tag{color:#6ad4b8;border-color:rgba(60,190,160,.35)}
+
+/* ── FINAL CTA ── */
+.cta-sec{
+  position:relative;z-index:1;
+  padding:5rem 1.5rem 6rem;text-align:center;
+}
+.cta-h{
+  font-family:'Fraunces',serif;font-size:clamp(24px,4.5vw,50px);
+  font-weight:300;letter-spacing:.01em;line-height:1.25;margin-bottom:.8rem;
+}
+.cta-h em{
+  font-style:italic;font-weight:200;
+  background:linear-gradient(135deg,#FFF0C0,#E2AA3A,#C4820A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 20px rgba(226,170,58,.4));
+  display:inline-block;padding-right:.12em;
+}
+.cta-sub{font-size:14px;color:var(--mu);max-width:360px;margin:0 auto 1rem;line-height:1.7;font-weight:300}
+.cta-social-proof{
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(226,170,58,.6);margin-bottom:2rem;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.cta-social-dot{width:6px;height:6px;border-radius:50%;background:rgba(110,210,130,.7);box-shadow:0 0 8px rgba(110,210,130,.5);flex-shrink:0}
+.cta-card{
+  max-width:420px;margin:0 auto;
+  background:rgba(16,12,4,.7);border:1px solid rgba(226,170,58,.2);
+  backdrop-filter:blur(28px);border-radius:20px;
+  padding:2rem 1.75rem 2.25rem;position:relative;overflow:hidden;
+}
+.cta-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(226,170,58,.3),transparent)}
+.cta-includes{
+  text-align:left;margin-bottom:1.5rem;
+  display:flex;flex-direction:column;gap:.6rem;
+}
+.cta-item{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:13px;color:rgba(255,252,248,.6);line-height:1.5;font-weight:300;
+}
+.cta-item-icon{color:var(--gold);font-size:14px;flex-shrink:0;margin-top:1px;filter:drop-shadow(0 0 4px rgba(226,170,58,.4))}
+.cta-item strong{color:var(--ink);font-weight:500}
+.cta-price-row{
+  display:flex;align-items:baseline;justify-content:center;gap:.75rem;
+  margin-bottom:.3rem;
+}
+.cta-price-old{
+  font-family:'Fraunces',serif;font-size:22px;font-weight:300;
+  color:rgba(255,252,248,.25);text-decoration:line-through;
+  text-decoration-color:rgba(255,80,80,.5);
+}
+.cta-price{
+  font-family:'Fraunces',serif;font-size:52px;font-weight:300;
+  background:linear-gradient(135deg,#FFF5D0,#E2AA3A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 20px rgba(226,170,58,.4));
+}
+.cta-once{font-size:11px;color:rgba(226,170,58,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem}
+.cta-compare{font-size:11px;color:rgba(255,252,248,.2);margin-bottom:1.5rem;font-weight:300;font-style:italic}
+.cta-guarantee{font-size:11px;color:var(--hi);margin-top:1rem;letter-spacing:.04em}
+.cta-btns{max-width:300px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:.75rem}
+
+/* ── FOOTER ── */
+footer{
+  position:relative;z-index:1;
+  padding:1.5rem 2rem;border-top:1px solid rgba(226,170,58,.08);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;
+}
+.foot-l{font-size:11px;color:var(--hi);font-weight:300}
+.foot-links{display:flex;gap:1.25rem}
+.foot-links a{font-size:11px;color:rgba(226,170,58,.35);text-decoration:none;transition:color .2s;letter-spacing:.04em}
+.foot-links a:hover{color:rgba(226,170,58,.65)}
+@media(max-width:500px){footer{flex-direction:column;text-align:center}.foot-links{justify-content:center}}
+
+
+/* ── FEATURES NEW ── */
+.feat-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:580px){.feat-2col{grid-template-columns:1fr}}
+.feat-card-new{padding:1.75rem 1.5rem;display:flex;flex-direction:column}
+.feat-svg-wrap{position:relative;width:44px;height:44px;flex-shrink:0}
+.feat-svg-wrap svg{position:relative;z-index:1;filter:drop-shadow(0 0 8px rgba(255,255,255,.1))}
+.feat-svg-glow{position:absolute;inset:-8px;border-radius:50%;pointer-events:none}
+.feat-card-eye{
+  display:inline-block;font-size:8.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;border:1px solid;
+  margin-bottom:.65rem;align-self:flex-start;
+}
+.feat-card-t{font-size:15px;font-weight:600;letter-spacing:-.015em;margin-bottom:.45rem;color:rgba(255,252,248,.92);line-height:1.25}
+.feat-card-b{font-size:12.5px;color:rgba(255,252,248,.46);line-height:1.7;font-weight:300;flex:1}
+.feat-big{border-color:rgba(226,170,58,.22) !important}
+
+/* ── SCROLL ANIM ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ══════════════════════════════════════════
+   LEGAL MODAL OVERLAY
+══════════════════════════════════════════ */
+.legal-overlay{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(10,8,6,.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  opacity:0;visibility:hidden;
+  transition:opacity .4s ease,visibility .4s ease;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+.legal-overlay.open{opacity:1;visibility:visible}
+.legal-overlay.open .lm-inner{transform:translateY(0);opacity:1}
+
+.lm-inner{
+  max-width:760px;margin:0 auto;padding:40px 28px 80px;
+  position:relative;z-index:1;
+  transform:translateY(20px);opacity:0;
+  transition:transform .45s .1s ease,opacity .45s .1s ease;
+}
+
+/* close button */
+.lm-close{
+  position:fixed;top:18px;right:22px;z-index:9001;
+  width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,170,58,.2);
+  background:rgba(10,8,6,.8);backdrop-filter:blur(10px);
+  color:rgba(255,252,248,.6);font-size:20px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s;
+}
+.lm-close:hover{border-color:var(--gold);color:var(--gold);background:rgba(226,170,58,.08)}
+
+/* brand */
+.lm-brand{text-align:center;margin-bottom:2.5rem;position:relative}
+.lm-brand::before{
+  content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(196,151,58,.06) 0%,transparent 65%);pointer-events:none;
+}
+.lm-brand-glyph{font-family:'IM Fell English',serif;font-size:46px;color:rgba(196,151,58,.3);display:block;margin-bottom:.4rem;line-height:1}
+.lm-brand-name{font-family:'Cinzel',serif;font-size:20px;font-weight:400;letter-spacing:.35em;text-transform:uppercase;color:rgba(232,224,208,.65);display:block;margin-bottom:.3rem}
+.lm-brand-tag{font-family:'IM Fell English',serif;font-size:12px;font-style:italic;color:rgba(232,224,208,.25);letter-spacing:.08em}
+
+/* ornament */
+.lm-ornament{display:flex;align-items:center;gap:.75rem;margin:1.5rem 0;opacity:.35}
+.lm-ornament::before,.lm-ornament::after{content:'';flex:1;height:1px;background:rgba(226,170,58,.18)}
+.lm-ornament-g{font-size:13px;color:rgba(196,151,58,.5);letter-spacing:.5rem;flex-shrink:0}
+
+/* tabs */
+.lm-tabs{display:flex;border-bottom:1px solid rgba(226,170,58,.14);margin-bottom:2.5rem;gap:0}
+.lm-tab{
+  flex:1;padding:13px 6px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;
+  color:rgba(255,252,248,.4);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .3s;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.lm-tab:hover{color:rgba(255,252,248,.6)}
+.lm-tab.active{color:var(--gold);border-bottom-color:rgba(226,170,58,.4)}
+.lm-tab-g{font-size:12px;opacity:.5}
+
+/* panels */
+.lm-panel{display:none}
+.lm-panel.active{display:block;animation:lmFade .5s ease both}
+@keyframes lmFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* typography inside legal modal */
+.lm-inner .lm-title{font-family:'Cinzel',serif;font-weight:400;font-size:clamp(20px,3.5vw,28px);color:rgba(255,252,248,.9);margin-bottom:.3rem;letter-spacing:.1em;text-transform:uppercase}
+.lm-inner .lm-subtitle{font-family:'IM Fell English',serif;font-size:15px;font-style:italic;color:rgba(255,252,248,.4);margin-bottom:2rem}
+.lm-inner .lm-date{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,252,248,.18);margin-bottom:2rem;display:block}
+.lm-inner h2{
+  font-family:'Cinzel',serif;font-weight:400;font-size:14px;
+  color:var(--gold);letter-spacing:.12em;text-transform:uppercase;
+  margin:2.5rem 0 .8rem;padding-top:1.5rem;
+  border-top:1px solid rgba(226,170,58,.1);
+  display:flex;align-items:center;gap:.6rem;
+}
+.lm-inner h2::before{content:'✦';font-size:9px;opacity:.5;font-family:serif}
+.lm-inner h2:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.lm-inner p,.lm-inner li{font-size:13.5px;color:rgba(255,252,248,.45);margin-bottom:.8rem;line-height:1.85;font-weight:300}
+.lm-inner ul{list-style:none;padding-left:0;margin-bottom:.8rem}
+.lm-inner li{position:relative;padding-left:1.4rem;margin-bottom:.55rem}
+.lm-inner li::before{content:'—';position:absolute;left:0;color:rgba(196,151,58,.35)}
+.lm-inner a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(226,170,58,.18);transition:border-color .2s}
+.lm-inner a:hover{border-bottom-color:var(--gold)}
+.lm-inner strong{font-weight:500;color:rgba(232,224,208,.72)}
+
+/* highlight box */
+.lm-hbox{
+  background:rgba(196,151,58,.04);border-left:2px solid rgba(196,151,58,.25);
+  padding:16px 18px;margin:1.2rem 0;border-radius:0 4px 4px 0;position:relative;
+}
+.lm-hbox::before{content:'☯';position:absolute;top:12px;right:14px;font-size:14px;color:rgba(196,151,58,.12)}
+.lm-hbox p{margin-bottom:0;color:rgba(232,224,208,.58);font-size:13px}
+
+/* compliance badges */
+.lm-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1rem}
+.lm-badge{font-size:9px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(226,170,58,.12);padding:3px 9px;color:rgba(255,252,248,.18);font-family:'DM Sans',sans-serif}
+.lm-badge.on{border-color:rgba(196,151,58,.25);color:rgba(196,151,58,.55)}
+
+/* lace frame */
+.lm-lace{border:1px solid rgba(196,151,58,.1);position:relative;padding:2px;margin-bottom:2rem}
+.lm-lace::before,.lm-lace::after{content:'✦';position:absolute;font-size:9px;color:rgba(196,151,58,.25)}
+.lm-lace::before{top:-5px;left:-5px}.lm-lace::after{bottom:-5px;right:-5px}
+.lm-lace-in{border:1px solid rgba(196,151,58,.05);padding:1.2rem}
+.lm-lace-in p{margin-bottom:0;font-family:'IM Fell English',serif;font-style:italic;color:rgba(232,224,208,.45);font-size:13px;line-height:1.8}
+
+/* legal footer */
+.lm-foot{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(226,170,58,.1);color:rgba(255,252,248,.15);font-size:10px;letter-spacing:.1em}
+.lm-foot-orn{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;opacity:.3}
+.lm-foot-orn::before,.lm-foot-orn::after{content:'';flex:1;height:1px;background:rgba(226,170,58,.15)}
+
+/* cookie banner */
+.lm-cookie{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:rgba(10,8,6,.96);border-top:1px solid rgba(226,170,58,.12);
+  backdrop-filter:blur(16px);padding:1rem 1.4rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.lm-cookie.hidden{display:none}
+.lm-cookie-text{font-size:11px;color:rgba(255,252,248,.4);line-height:1.65;max-width:580px}
+.lm-cookie-text a{font-size:11px;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(226,170,58,.15)}
+.lm-cookie-btns{display:flex;gap:7px;flex-shrink:0}
+.lm-cookie-btn{
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;
+  cursor:pointer;border:1px solid;transition:all .2s;border-radius:0;
+}
+.lm-cookie-accept{background:var(--gold);color:#0A0806;border-color:var(--gold)}
+.lm-cookie-accept:hover{background:#c4960a}
+.lm-cookie-decline{background:transparent;color:rgba(255,252,248,.4);border-color:rgba(226,170,58,.15)}
+.lm-cookie-decline:hover{color:rgba(255,252,248,.7);border-color:rgba(255,252,248,.3)}
+
+@media(max-width:600px){
+  .lm-inner{padding:32px 16px 70px}
+  .lm-title{font-size:18px !important}
+  .lm-tab{font-size:9px;padding:11px 3px;letter-spacing:.08em}
+  .lm-cookie{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-wrap">
+  <div class="bg-img"></div>
+  <div class="bg-over"></div>
+  <div class="bg-grain"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-img"><img src="images/logo.png" alt="taiji"/></div>
+    <div class="logo-name">Fengshui<em>Master</em></div>
+  </a>
+  <div class="nav-r">
+    <div class="nav-chip"><div class="nav-chip-dot"></div>AI Powered</div>
+    <button class="nav-cta" onclick="window.location.href='onboarding.html'">Get My Reading</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-halo"></div>
+
+  <div class="hero-orb">
+    <div class="orb-ring r1"></div>
+    <div class="orb-ring r2"></div>
+    <div class="orb-ring r3"></div>
+    <img src="images/hero.png" class="orb-img" alt="taiji"/>
+  </div>
+
+  <div class="hero-badge"><div class="hero-badge-dot"></div>3,000 years of wisdom · now AI</div>
+
+  <h1 class="hero-h1">
+    Get Your Free<br><span class="gold">Feng Shui Score.</span>
+  </h1>
+  <p class="hero-sub">
+    Discover your elemental archetype, five-element balance, and personalized remedies —
+    <strong>free in 10 seconds</strong>. No credit card required.
+  </p>
+
+  <div class="hero-btns">
+    <button class="btn-gold" onclick="window.location.href='onboarding.html'">Get My Free Score →</button>
+    <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works ↓</button>
+  </div>
+</section>
+
+<!-- FLIP CARDS -->
+<div class="flip-row" id="flipRow">
+
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-f">
+        <div class="flip-num">2.4<span class="flip-unit">K</span></div>
+        <div class="flip-label">Homes Analyzed</div>
+      </div>
+      <div class="flip-b">
+        <div class="flip-b-title">12 Countries</div>
+        <div class="flip-b-body">From London to Singapore — feng shui works wherever you live.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-f" style="border-color:rgba(226,170,58,.35)">
+        <div class="flip-num" style="font-size:32px">4.9★</div>
+        <div class="flip-label">Average Rating</div>
+      </div>
+      <div class="flip-b">
+        <div class="flip-b-title">Verified Users</div>
+        <div class="flip-b-body">"I rearranged one corner. My sleep changed in 3 days." — Sarah, NYC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-f">
+        <div class="flip-num">$19.90</div>
+        <div class="flip-label">One-time Report</div>
+      </div>
+      <div class="flip-b">
+        <div class="flip-b-title">vs $150 Consultation</div>
+        <div class="flip-b-body">Same depth of analysis. No appointment. Instant access after payment.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section reveal" id="how">
+  <div class="sec-eye">How it works</div>
+  <div class="how-grid">
+    <div class="g how-card">
+      <img class="how-img" src="images/how-1.png" alt="">
+      <div class="how-img-overlay"></div>
+      <div class="how-content">
+        <div class="how-n">01</div>
+        <div class="how-t">Upload your floor plan</div>
+        <div class="how-b">A sketch, photo, or blueprint. AI reads room layout, proportions, door and window positions.</div>
+      </div>
+    </div>
+    <div class="g how-card">
+      <img class="how-img" src="images/how-2.png" alt="">
+      <div class="how-img-overlay"></div>
+      <div class="how-content">
+        <div class="how-n">02</div>
+        <div class="how-t">Enter your details</div>
+        <div class="how-b">Home facing direction, birth date, and your top priority. 90 seconds. Personalizes everything.</div>
+      </div>
+    </div>
+    <div class="g how-card">
+      <img class="how-img" src="images/how-3.png" alt="">
+      <div class="how-img-overlay"></div>
+      <div class="how-content">
+        <div class="how-n">03</div>
+        <div class="how-t">Unlock your full report</div>
+        <div class="how-b">14 pages of room-by-room analysis, 10 prioritized fixes, plant placements, auspicious dates.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote reveal" id="quoteSection">
+  <div class="quote-particles" id="quoteParticles"></div>
+  <div class="quote-line quote-line1">You're not stuck.</div>
+  <div class="quote-line quote-line2">Your environment is.</div>
+  <div class="quote-attr">FengShuiMaster · AI Energy Analysis</div>
+</div>
+
+<!-- FEATURES -->
+<section class="section reveal" style="padding-top:4rem">
+
+  <!-- Section header -->
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="sec-eye">What Changes After This</div>
+    <p style="font-size:clamp(13px,1.6vw,16px);color:rgba(255,252,248,.4);font-weight:300;font-style:italic;font-family:'Fraunces',serif;letter-spacing:.01em">
+      Most people stay stuck because they never see this clearly.
+    </p>
+  </div>
+
+  <!-- ROW 1: Big card full width -->
+  <div class="g feat-big" style="margin-bottom:1rem;padding:2rem 2.25rem;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-40px;right:-40px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(226,170,58,.12) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap">
+      <div style="flex-shrink:0">
+        <!-- SVG icon: decode/scan -->
+        <div class="feat-svg-wrap">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="4" y="4" width="10" height="10" rx="2" stroke="rgba(226,170,58,.7)" stroke-width="1.5"/>
+            <rect x="4" y="26" width="10" height="10" rx="2" stroke="rgba(226,170,58,.7)" stroke-width="1.5"/>
+            <rect x="26" y="4" width="10" height="10" rx="2" stroke="rgba(226,170,58,.7)" stroke-width="1.5"/>
+            <path d="M26 32h8M30 28v8" stroke="rgba(226,170,58,.5)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M9 14v6h6M20 9h6M20 20h12" stroke="rgba(226,170,58,.35)" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="3" stroke="rgba(226,170,58,.6)" stroke-width="1.5"/>
+            <circle cx="20" cy="20" r="6" stroke="rgba(226,170,58,.2)" stroke-width="1" stroke-dasharray="2 2"/>
+          </svg>
+          <div class="feat-svg-glow" style="background:radial-gradient(circle,rgba(226,170,58,.25) 0%,transparent 70%)"></div>
+        </div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(226,170,58,.55);margin-bottom:.5rem">Core Analysis</div>
+        <div style="font-size:clamp(18px,2.5vw,24px);font-weight:600;letter-spacing:-.02em;margin-bottom:.6rem;color:rgba(255,252,248,.94)">Your space, fully decoded</div>
+        <div style="font-size:clamp(13px,1.5vw,15px);color:rgba(255,252,248,.5);line-height:1.75;font-weight:300;max-width:560px">Every room mapped, scored, and explained — so you finally understand what's been affecting your energy.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Two cards -->
+  <div class="feat-2col" style="margin-bottom:1rem">
+    <div class="g feat-card-new">
+      <div class="feat-svg-wrap" style="margin-bottom:1rem">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <path d="M18 4L18 10M18 26L18 32M4 18L10 18M26 18L32 18" stroke="rgba(155,110,255,.6)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="7" stroke="rgba(155,110,255,.7)" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="3" fill="rgba(155,110,255,.3)" stroke="rgba(155,110,255,.8)" stroke-width="1"/>
+          <path d="M8 8L12 12M24 24L28 28M8 28L12 24M24 12L28 8" stroke="rgba(155,110,255,.3)" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <div class="feat-svg-glow" style="background:radial-gradient(circle,rgba(155,110,255,.2) 0%,transparent 70%)"></div>
+      </div>
+      <div class="feat-card-eye" style="color:rgba(155,110,255,.6);border-color:rgba(155,110,255,.2);background:rgba(155,110,255,.08)">Highest Impact</div>
+      <div class="feat-card-t">Fix what's actually blocking you</div>
+      <div class="feat-card-b">10 prioritized changes ranked by real impact — most people feel a shift within 48 hours.</div>
+    </div>
+    <div class="g feat-card-new">
+      <div class="feat-svg-wrap" style="margin-bottom:1rem">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <path d="M18 6C18 6 12 12 12 18C12 21.3 14.7 24 18 24C21.3 24 24 21.3 24 18C24 12 18 6 18 6Z" stroke="rgba(110,210,130,.7)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M18 24V30" stroke="rgba(110,210,130,.5)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M13 30H23" stroke="rgba(110,210,130,.4)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="16" r="2" fill="rgba(110,210,130,.4)" stroke="rgba(110,210,130,.7)" stroke-width="1"/>
+          <path d="M12 14C9 15 7 18 8 21M24 14C27 15 29 18 28 21" stroke="rgba(110,210,130,.25)" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <div class="feat-svg-glow" style="background:radial-gradient(circle,rgba(110,210,130,.2) 0%,transparent 70%)"></div>
+      </div>
+      <div class="feat-card-eye" style="color:rgba(110,210,130,.7);border-color:rgba(110,210,130,.2);background:rgba(110,210,130,.08)">Energy Activation</div>
+      <div class="feat-card-t">Activate the right energy in your space</div>
+      <div class="feat-card-b">Know exactly what to place, where to place it, and how it affects your life.</div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Two cards -->
+  <div class="feat-2col">
+    <div class="g feat-card-new">
+      <div class="feat-svg-wrap" style="margin-bottom:1rem">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="13" stroke="rgba(226,140,58,.55)" stroke-width="1.5"/>
+          <path d="M18 8V18L24 22" stroke="rgba(226,140,58,.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 18H4M32 18H30M18 6V4M18 32V30" stroke="rgba(226,140,58,.3)" stroke-width="1" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="2" fill="rgba(226,140,58,.5)"/>
+        </svg>
+        <div class="feat-svg-glow" style="background:radial-gradient(circle,rgba(226,140,58,.2) 0%,transparent 70%)"></div>
+      </div>
+      <div class="feat-card-eye" style="color:rgba(226,140,58,.7);border-color:rgba(226,140,58,.2);background:rgba(226,140,58,.08)">Timing</div>
+      <div class="feat-card-t">Timing that works for you</div>
+      <div class="feat-card-b">Identify the best moments to make changes — aligned with your personal energy.</div>
+    </div>
+    <div class="g feat-card-new">
+      <div class="feat-svg-wrap" style="margin-bottom:1rem">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <path d="M18 4C10.3 4 4 10.3 4 18C4 25.7 10.3 32 18 32C25.7 32 32 25.7 32 18" stroke="rgba(91,173,255,.55)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M18 10V18M18 18L23 23" stroke="rgba(91,173,255,.8)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M26 4L26 12M22 8L30 8" stroke="rgba(91,173,255,.6)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="2.5" fill="rgba(91,173,255,.3)" stroke="rgba(91,173,255,.7)" stroke-width="1"/>
+        </svg>
+        <div class="feat-svg-glow" style="background:radial-gradient(circle,rgba(91,173,255,.2) 0%,transparent 70%)"></div>
+      </div>
+      <div class="feat-card-eye" style="color:rgba(91,173,255,.7);border-color:rgba(91,173,255,.2);background:rgba(91,173,255,.08)">Personal Pattern</div>
+      <div class="feat-card-t">Your personal energy pattern</div>
+      <div class="feat-card-b">Understand how your environment shapes your mood, focus, and life direction.</div>
+    </div>
+  </div>
+
+  <!-- Bottom whisper -->
+  <div style="text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(226,170,58,.08)">
+    <p style="font-size:12px;color:rgba(255,252,248,.22);font-weight:300;font-style:italic;letter-spacing:.04em;font-family:'Fraunces',serif">
+      You don't need to stay stuck. This shows you exactly why — and how to change it.
+    </p>
+  </div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec reveal">
+  <div class="testi-headline-wrap">
+    <p class="testi-eyebrow">Verified Reports</p>
+    <h2 class="testi-headline">Real people.<br><em>Real shifts.</em></h2>
+    <p class="testi-headline-sub">From homes that changed — and the lives that followed.</p>
+  </div>
+
+  <div class="testi-grid">
+    <!-- Sarah M., 34 -->
+    <div class="g testi-card">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-body">Within two weeks of following the recommendations, I received a job offer I'd been waiting on for months. I can't explain it — but I'm not questioning it.</p>
+      <div class="testi-footer">
+        <img class="testi-avatar-img" src="images/avatar-1.jpg" alt="Sarah M., 34">
+        <div class="testi-info">
+          <span class="testi-name">Sarah M., 34</span>
+          <span class="testi-role">Career & Wealth · Austin, TX</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emily R., 41 -->
+    <div class="g testi-card">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-body">I moved the bed as suggested and started sleeping through the night for the first time in years. My partner thought I was crazy until he noticed the difference too.</p>
+      <div class="testi-footer">
+        <img class="testi-avatar-img" src="images/avatar-2.jpg" alt="Emily R., 41">
+        <div class="testi-info">
+          <span class="testi-name">Emily R., 41</span>
+          <span class="testi-role">Health & Sleep · London, UK</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jessica T., 29 -->
+    <div class="g testi-card">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-body">The wealth corner analysis was shockingly accurate. I had a pile of shoes exactly where it said energy was blocked. Moved them, decluttered — got an unexpected $4K client within a month.</p>
+      <div class="testi-footer">
+        <img class="testi-avatar-img" src="images/avatar-3.jpg" alt="Jessica T., 29">
+        <div class="testi-info">
+          <span class="testi-name">Jessica T., 29</span>
+          <span class="testi-role">Wealth Flow · Vancouver, CA</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marcus L., 47 -->
+    <div class="g testi-card">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-body">I've paid hundreds for in-person feng shui consultants. This report was more detailed, half the price, and I can reference it anytime. Genuinely the best $19.90 I've spent.</p>
+      <div class="testi-footer">
+        <img class="testi-avatar-img" src="images/avatar-4.jpg" alt="Marcus L., 47">
+        <div class="testi-info">
+          <span class="testi-name">Marcus L., 47</span>
+          <span class="testi-role">Best Value · Sydney, AU</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Priya K., 33 -->
+    <div class="g testi-card">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-body">After my breakup I needed a reset. The relationship zone recommendations gave me something concrete to do. Six months later — new apartment, new energy, new relationship.</p>
+      <div class="testi-footer">
+        <img class="testi-avatar-img" src="images/avatar-5.jpg" alt="Priya K., 33">
+        <div class="testi-info">
+          <span class="testi-name">Priya K., 33</span>
+          <span class="testi-role">Relationships · Singapore</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Claire D., 38 -->
+    <div class="g testi-card">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-body">Skeptic turned believer. The report identified the exact corner of my home office that felt 'off' — a term I'd used for two years without knowing why. One small change, huge shift.</p>
+      <div class="testi-footer">
+        <img class="testi-avatar-img" src="images/avatar-6.jpg" alt="Claire D., 38">
+        <div class="testi-info">
+          <span class="testi-name">Claire D., 38</span>
+          <span class="testi-role">Work & Focus · New York, NY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WISDOM JOURNAL / BLOG -->
+<section class="blog-sec reveal" id="journal">
+  <div class="blog-header">
+    <p class="blog-eyebrow">✦ The Wisdom Journal ✦</p>
+    <h2 class="blog-headline">Ancient knowledge,<br><em>modern living.</em></h2>
+    <p class="blog-sub">Explore the art of harmonious space — one room at a time.</p>
+  </div>
+
+  <div class="blog-grid">
+    <a href="blog/feng-shui-bedroom-layout.html" class="g blog-card blog-card--sleep">
+      <div class="blog-card-aura"></div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Bedroom</span>
+        <h3 class="blog-card-title">The Complete Bedroom Layout Guide</h3>
+        <p class="blog-card-desc">Master the commanding position, elemental balance, and color psychology for deeper sleep and restored energy.</p>
+        <span class="blog-card-link">Read the guide <span class="blog-arrow">→</span></span>
+      </div>
+    </a>
+
+    <a href="blog/front-door-direction-feng-shui.html" class="g blog-card blog-card--door">
+      <div class="blog-card-aura"></div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Front Door</span>
+        <h3 class="blog-card-title">What Your Door Reveals About Your Home</h3>
+        <p class="blog-card-desc">Your front door is the mouth of qi. Learn what its direction means — and how to strengthen it.</p>
+        <span class="blog-card-link">Read the guide <span class="blog-arrow">→</span></span>
+      </div>
+    </a>
+
+    <a href="blog/feng-shui-colors-for-every-room.html" class="g blog-card blog-card--color">
+      <div class="blog-card-aura"></div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Colors</span>
+        <h3 class="blog-card-title">Feng Shui Colors for Every Room</h3>
+        <p class="blog-card-desc">Each color carries elemental energy. Discover the perfect palette to activate wealth, love, and calm.</p>
+        <span class="blog-card-link">Read the guide <span class="blog-arrow">→</span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-sec reveal">
+  <h2 class="cta-h">Ready to change<br>what's <em>blocking you?</em></h2>
+  <p class="cta-sub">One report. Every answer. Fixes you can start tonight.</p>
+  <div class="cta-social-proof">
+    <span class="cta-social-dot"></span>
+    Trusted by 2,800+ homeowners worldwide
+  </div>
+
+  <div class="cta-card">
+    <div class="cta-includes">
+      <div class="cta-item"><span class="cta-item-icon">✦</span><span><strong>8-Palace Energy Map</strong> — full analysis of every zone in your home</span></div>
+      <div class="cta-item"><span class="cta-item-icon">✦</span><span><strong>Personalized Remedies</strong> — 10+ ranked fixes you can start tonight</span></div>
+      <div class="cta-item"><span class="cta-item-icon">✦</span><span><strong>Wealth & Career Reading</strong> — unlock blocked income energy</span></div>
+      <div class="cta-item"><span class="cta-item-icon">✦</span><span><strong>Relationship Zone Guide</strong> — optimize love & family harmony</span></div>
+      <div class="cta-item"><span class="cta-item-icon">✦</span><span><strong>Beautiful PDF Report</strong> — instant delivery, keep forever</span></div>
+    </div>
+
+    <div class="cta-price-row">
+      <span class="cta-price-old">$89</span>
+      <span class="cta-price">$19.90</span>
+    </div>
+    <div class="cta-once">One-time · No subscription</div>
+    <div class="cta-compare">Traditional in-person consultation: $200 – $500</div>
+
+    <div class="cta-btns">
+      <button class="btn-gold" onclick="window.location.href='onboarding.html'">Get My Reading →</button>
+      <div class="cta-guarantee">🔒 Secure payment · 30-day money-back guarantee · Instant delivery</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-l">© 2026 FengShuiMaster · fengshuimaster.pro</div>
+  <div class="foot-links">
+    <a href="#" onclick="openLegal('privacy');return false">Privacy</a>
+    <a href="#" onclick="openLegal('refund');return false">Refund</a>
+    <a href="#" onclick="openLegal('terms');return false">Terms</a>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     LEGAL MODAL OVERLAY
+══════════════════════════════════════════ -->
+<div class="legal-overlay" id="legalOverlay">
+  <button class="lm-close" onclick="closeLegal()" aria-label="Close">✕</button>
+  <div class="lm-inner">
+
+    <div class="lm-brand">
+      <span class="lm-brand-glyph">☯</span>
+      <span class="lm-brand-name">FengShuiMaster</span>
+      <span class="lm-brand-tag">fengshuimaster.pro · Spatial Intelligence</span>
+    </div>
+
+    <div class="lm-ornament"><span class="lm-ornament-g">✦ · ✦</span></div>
+
+    <div class="lm-tabs">
+      <button class="lm-tab active" data-tab="privacy" onclick="showLegalTab('privacy')"><span class="lm-tab-g">☵</span> Privacy Policy</button>
+      <button class="lm-tab" data-tab="refund" onclick="showLegalTab('refund')"><span class="lm-tab-g">☷</span> Refund Policy</button>
+      <button class="lm-tab" data-tab="terms" onclick="showLegalTab('terms')"><span class="lm-tab-g">☰</span> Terms of Service</button>
+    </div>
+
+    <!-- PRIVACY POLICY -->
+    <div id="lm-privacy" class="lm-panel active">
+      <div class="lm-badges">
+        <span class="lm-badge on">GDPR Compliant</span>
+        <span class="lm-badge on">CCPA Compliant</span>
+        <span class="lm-badge">EU &amp; California</span>
+      </div>
+      <h1 class="lm-title">Privacy Policy</h1>
+      <div class="lm-subtitle">How we protect your personal information.</div>
+      <span class="lm-date">Effective Date: March 19, 2026</span>
+
+      <p>FengShuiMaster ("we," "our," or "us") operates the website and web application located at <strong>fengshuimaster.pro</strong>. This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our services.</p>
+
+      <div class="lm-lace"><div class="lm-lace-in">
+        <p>"We do not sell your personal information. We never have. We never will. Your data exists to serve your experience — nothing else."</p>
+      </div></div>
+
+      <h2>1. Information We Collect</h2>
+      <p><strong>Information you provide directly:</strong></p>
+      <ul>
+        <li>Name and email address when creating an account</li>
+        <li>Date, time, and location of birth when using our feng shui analysis services</li>
+        <li>Floor plan images or sketches you upload for analysis</li>
+        <li>Payment information (processed securely through Stripe — we do not store your card details)</li>
+        <li>Any additional information you voluntarily submit through our platform</li>
+      </ul>
+      <p><strong>Information collected automatically:</strong></p>
+      <ul>
+        <li>Device information (browser type, operating system, device identifiers)</li>
+        <li>Usage data (pages visited, features used, timestamps)</li>
+        <li>IP address and approximate geographic location</li>
+        <li>Cookies and similar tracking technologies (see Section 6)</li>
+      </ul>
+
+      <h2>2. How We Use Your Information</h2>
+      <ul>
+        <li>To provide and deliver our feng shui analysis services</li>
+        <li>To process your payment and send transaction confirmations</li>
+        <li>To communicate with you regarding your account or our services</li>
+        <li>To improve, personalize, and optimize our platform</li>
+        <li>To detect and prevent fraud or unauthorized access</li>
+        <li>To comply with legal obligations under GDPR, CCPA, and applicable laws</li>
+      </ul>
+
+      <h2>3. How We Share Your Information</h2>
+      <p>We do not sell your personal information. We may share your data only with:</p>
+      <ul>
+        <li><strong>Stripe</strong> — our payment processor, to facilitate secure transactions</li>
+        <li><strong>Netlify</strong> — our hosting and infrastructure provider</li>
+        <li><strong>Analytics providers</strong> — in aggregated, anonymized form only</li>
+        <li><strong>Legal authorities</strong> — when required by law, regulation, or court order</li>
+      </ul>
+
+      <h2>4. Your Rights Under GDPR (EU / EEA Residents)</h2>
+      <p>If you are located in the European Union or European Economic Area, you have the following rights under the General Data Protection Regulation:</p>
+      <ul>
+        <li><strong>Right of access</strong> — request a copy of the personal data we hold about you</li>
+        <li><strong>Right to rectification</strong> — request correction of inaccurate or incomplete data</li>
+        <li><strong>Right to erasure</strong> ("right to be forgotten") — request deletion of your personal data</li>
+        <li><strong>Right to restrict processing</strong> — request that we limit how we use your data</li>
+        <li><strong>Right to data portability</strong> — receive your data in a structured, machine-readable format</li>
+        <li><strong>Right to object</strong> — object to processing based on legitimate interests or for direct marketing</li>
+        <li><strong>Right to withdraw consent</strong> — at any time, without affecting the lawfulness of prior processing</li>
+      </ul>
+      <p>To exercise any GDPR right, contact us at <strong><a href="/cdn-cgi/l/email-protection#88fbfdf8f8e7fafcc8eeede6effbe0fde1e5e9fbfcedfaa6f8fae7"><span class="__cf_email__" data-cfemail="a7d4d2d7d7c8d5d3e7c1c2c9c0d4cfd2cecac6d4d3c2d589d7d5c8">[email&#160;protected]</span></a></strong>. We will respond within 30 days.</p>
+
+      <h2>5. Your Rights Under CCPA (California Residents)</h2>
+      <p>If you are a California resident, the California Consumer Privacy Act (CCPA) grants you the following rights:</p>
+      <ul>
+        <li><strong>Right to know</strong> — request disclosure of what personal information we collect, use, disclose, and sell</li>
+        <li><strong>Right to delete</strong> — request deletion of personal information we have collected from you</li>
+        <li><strong>Right to opt-out</strong> — we do not sell personal information</li>
+        <li><strong>Right to non-discrimination</strong> — we will not discriminate against you for exercising any CCPA right</li>
+        <li><strong>Right to correct</strong> — request correction of inaccurate personal information</li>
+      </ul>
+      <p>To submit a CCPA request, contact us at <strong><a href="/cdn-cgi/l/email-protection#ddaea8adadb2afa99dbbb8b3baaeb5a8b4b0bcaea9b8aff3adafb2"><span class="__cf_email__" data-cfemail="33404643435c41477355565d54405b465a5e52404756411d43415c">[email&#160;protected]</span></a></strong> or use the subject line "CCPA Privacy Request."</p>
+
+      <h2>6. Cookies &amp; Tracking</h2>
+      <p>We use the following types of cookies:</p>
+      <ul>
+        <li><strong>Essential cookies</strong> — necessary for basic functionality; cannot be disabled</li>
+        <li><strong>Analytics cookies</strong> — help us understand usage patterns. Require consent in the EU</li>
+        <li><strong>Preference cookies</strong> — remember your settings and choices</li>
+      </ul>
+      <p>EU users will be presented with a cookie consent banner on first visit. You may withdraw cookie consent at any time.</p>
+
+      <h2>7. Data Retention</h2>
+      <p>We retain your personal information for as long as your account is active or as needed to provide services. You may request deletion at any time. We will delete or anonymize your data within <strong>30 days</strong> of a verified request, unless retention is required by law.</p>
+
+      <h2>8. Data Security</h2>
+      <p>We implement industry-standard security measures: encrypted data transmission (TLS/SSL), secure payment processing through Stripe, and restricted access controls.</p>
+
+      <h2>9. International Data Transfers</h2>
+      <p>Your information may be transferred to and processed in countries outside your country of residence. Where required by GDPR, we rely on Standard Contractual Clauses (SCCs) or other approved transfer mechanisms.</p>
+
+      <h2>10. Children's Privacy</h2>
+      <p>Our services are not intended for individuals under the age of 16. We do not knowingly collect personal information from children.</p>
+
+      <h2>11. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy with a revised effective date.</p>
+
+      <h2>12. Contact &amp; Data Controller</h2>
+      <div class="lm-hbox">
+        <p>FengShuiMaster<br>Email: <a href="/cdn-cgi/l/email-protection#d2a1a7a2a2bda0a692b4b7bcb5a1baa7bbbfb3a1a6b7a0fca2a0bd"><span class="__cf_email__" data-cfemail="21525451514e53556147444f46524954484c40525544530f51534e">[email&#160;protected]</span></a><br>Website: fengshuimaster.pro<br>For GDPR or CCPA requests, please include the applicable regulation in your subject line.</p>
+      </div>
+    </div>
+
+    <!-- REFUND POLICY -->
+    <div id="lm-refund" class="lm-panel">
+      <h1 class="lm-title">Refund Policy</h1>
+      <div class="lm-subtitle">Our commitment to a fair experience.</div>
+      <span class="lm-date">Effective Date: March 19, 2026</span>
+
+      <div class="lm-hbox">
+        <p>We offer a <strong>30-day satisfaction guarantee</strong>. If you are not satisfied with your report for any reason, contact us within 30 days of purchase and we will issue a full refund — no questions asked.</p>
+      </div>
+
+      <h2>1. Digital Product</h2>
+      <p>FengShuiMaster provides a digital feng shui analysis service. Upon successful payment of the one-time fee of <strong>$19.90 USD</strong>, you will receive immediate access to your personalized feng shui report.</p>
+
+      <h2>2. Satisfaction Guarantee</h2>
+      <p>We stand behind the quality of our reports. If you are dissatisfied for any reason, you may request a full refund within <strong>30 days</strong> of your purchase date. No explanation required.</p>
+
+      <h2>3. Automatic Refund Eligibility</h2>
+      <p>We will automatically process a full refund in the following circumstances:</p>
+      <ul>
+        <li><strong>Technical failure</strong> — the service failed to generate your report due to a system error</li>
+        <li><strong>Duplicate charge</strong> — you were accidentally charged more than once</li>
+        <li><strong>Service not delivered</strong> — you did not receive access to the report after payment</li>
+      </ul>
+
+      <h2>4. Refund Request Process</h2>
+      <p>To request a refund, email <strong><a href="/cdn-cgi/l/email-protection#3d4e484d4d524f497d5b58535a4e554854505c4e49584f134d4f52"><span class="__cf_email__" data-cfemail="2f5c5a5f5f405d5b6f494a41485c475a46424e5c5b4a5d015f5d40">[email&#160;protected]</span></a></strong> within 30 days of your purchase. Include:</p>
+      <ul>
+        <li>Your name and email address associated with the purchase</li>
+        <li>Date of purchase</li>
+        <li>A brief description of the issue (optional for satisfaction guarantee requests)</li>
+      </ul>
+      <p>We will respond within <strong>3 business days</strong> and process approved refunds within 5–10 business days via your original payment method through Stripe.</p>
+
+      <h2>5. Chargebacks</h2>
+      <div class="lm-hbox">
+        <p>We encourage you to contact us directly before initiating a chargeback. Chargebacks may result in account suspension pending investigation.</p>
+      </div>
+
+      <h2>6. Contact</h2>
+      <div class="lm-hbox">
+        <p>FengShuiMaster<br><a href="/cdn-cgi/l/email-protection#03707673736c71774365666d64706b766a6e62707766712d73716c"><span class="__cf_email__" data-cfemail="54272124243b26201432313a33273c213d3935272031267a24263b">[email&#160;protected]</span></a></p>
+      </div>
+    </div>
+
+    <!-- TERMS OF SERVICE -->
+    <div id="lm-terms" class="lm-panel">
+      <h1 class="lm-title">Terms of Service</h1>
+      <div class="lm-subtitle">The rules that protect both of us.</div>
+      <span class="lm-date">Effective Date: March 19, 2026</span>
+
+      <p>Welcome to FengShuiMaster. By accessing or using our website and services at <strong>fengshuimaster.pro</strong>, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
+
+      <h2>1. Overview of Services</h2>
+      <p>FengShuiMaster provides a web-based feng shui analysis platform that generates personalized reports based on information you provide, including your date and location of birth, home floor plan, and directional orientation.</p>
+
+      <h2>2. Eligibility</h2>
+      <p>You must be at least 16 years of age to use our services.</p>
+
+      <h2>3. Payment</h2>
+      <p>FengShuiMaster offers its analysis service for a one-time payment of <strong>$19.90 USD</strong>. All payments are processed securely through Stripe.</p>
+
+      <h2>4. Intellectual Property</h2>
+      <p>All content, design, text, graphics, algorithms, and software on FengShuiMaster are owned by or licensed to us and are protected by intellectual property laws.</p>
+      <p>Your personalized feng shui report is licensed to you for personal, non-commercial use only.</p>
+
+      <h2>5. Entertainment &amp; Informational Purposes Only</h2>
+      <div class="lm-hbox">
+        <p>FengShuiMaster provides feng shui analysis for <strong>entertainment and informational purposes only</strong>. Our reports do not constitute professional advice in any field. You should not make significant life decisions based solely on the content of our reports.</p>
+      </div>
+
+      <h2>6. Acceptable Use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use our services for any unlawful purpose</li>
+        <li>Attempt to reverse-engineer or extract the source code of our platform</li>
+        <li>Scrape, crawl, or use automated tools to access our services without permission</li>
+        <li>Resell, redistribute, or commercially exploit our reports or content</li>
+        <li>Upload content that infringes third-party intellectual property rights</li>
+        <li>Interfere with or disrupt the integrity or performance of our services</li>
+      </ul>
+
+      <h2>7. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, FengShuiMaster shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services.</p>
+      <p>Our total liability shall not exceed the amount you paid to us in the twelve (12) months preceding the claim.</p>
+
+      <h2>8. Disclaimer of Warranties</h2>
+      <p>Our services are provided on an "as is" and "as available" basis without warranties of any kind.</p>
+
+      <h2>9. Refunds</h2>
+      <p>Our refund policy is governed by the Refund Policy tab above. We offer a 30-day satisfaction guarantee on all purchases.</p>
+
+      <h2>10. Termination</h2>
+      <p>We reserve the right to suspend or terminate your access at any time if we believe you have violated these Terms.</p>
+
+      <h2>11. Governing Law</h2>
+      <p>These Terms shall be governed by the laws of the Hong Kong Special Administrative Region. EU residents retain rights under applicable EU consumer protection law.</p>
+
+      <h2>12. Changes to These Terms</h2>
+      <p>We may revise these Terms at any time by posting the updated version on our website.</p>
+
+      <h2>13. Contact</h2>
+      <div class="lm-hbox">
+        <p>FengShuiMaster<br><a href="/cdn-cgi/l/email-protection#88fbfdf8f8e7fafcc8eeede6effbe0fde1e5e9fbfcedfaa6f8fae7"><span class="__cf_email__" data-cfemail="3c4f494c4c534e487c5a59525b4f544955515d4f48594e124c4e53">[email&#160;protected]</span></a><br>fengshuimaster.pro</p>
+      </div>
+    </div>
+
+    <div class="lm-ornament" style="margin-top:2.5rem"><span class="lm-ornament-g">✦ · ✦</span></div>
+    <div class="lm-foot">
+      <div class="lm-foot-orn"><span>☯</span></div>
+      <div>© 2026 FengShuiMaster · fengshuimaster.pro</div>
+      <div style="margin-top:.3rem;opacity:.5">Ancient wisdom, modern precision.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COOKIE CONSENT -->
+<div class="lm-cookie" id="cookieBanner">
+  <div class="lm-cookie-text">
+    We use essential cookies and optional analytics cookies.
+    EU visitors: we only place non-essential cookies with your consent.
+    <a href="#" onclick="openLegal('privacy');return false">Privacy Policy</a>
+  </div>
+  <div class="lm-cookie-btns">
+    <button class="lm-cookie-btn lm-cookie-decline" onclick="cookieDecline()">Essential Only</button>
+    <button class="lm-cookie-btn lm-cookie-accept" onclick="cookieAccept()">Accept All</button>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Scroll reveal
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:.15});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+// Fallback: ensure all reveal sections become visible
+setTimeout(function(){
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+}, 1200);
+
+// Auto-flip cards on load with stagger
+setTimeout(function(){
+  document.querySelectorAll('.flip-card').forEach(function(c,i){
+    setTimeout(function(){
+      c.classList.add('flipped');
+      setTimeout(function(){ c.classList.remove('flipped'); }, 900);
+    }, i * 220);
+  });
+}, 1800);
+
+// ── Golden floating particles for quote section ──
+(function(){
+  var container = document.getElementById('quoteParticles');
+  if(!container) return;
+  // Small sparkles
+  for(var i = 0; i < 18; i++){
+    var s = document.createElement('div');
+    s.className = 'sparkle';
+    var size = Math.random() * 4 + 2;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDuration = (Math.random() * 4 + 3) + 's';
+    s.style.animationDelay = (Math.random() * 5) + 's';
+    container.appendChild(s);
+  }
+  // Large floating orbs
+  for(var j = 0; j < 8; j++){
+    var o = document.createElement('div');
+    o.className = 'sparkle-lg';
+    var oSize = Math.random() * 30 + 15;
+    o.style.width = oSize + 'px';
+    o.style.height = oSize + 'px';
+    o.style.left = Math.random() * 100 + '%';
+    o.style.top = (Math.random() * 60 + 20) + '%';
+    o.style.animationDuration = (Math.random() * 6 + 5) + 's';
+    o.style.animationDelay = (Math.random() * 6) + 's';
+    container.appendChild(o);
+  }
+})();
+
+// ── Legal modal ──
+function openLegal(tab){
+  var o = document.getElementById('legalOverlay');
+  o.classList.add('open');
+  document.body.style.overflow='hidden';
+  if(tab) showLegalTab(tab);
+  o.scrollTop = 0;
+}
+function closeLegal(){
+  document.getElementById('legalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function showLegalTab(id){
+  document.querySelectorAll('.lm-tab').forEach(function(b){
+    b.classList.toggle('active', b.dataset.tab === id);
+  });
+  document.querySelectorAll('.lm-panel').forEach(function(t){
+    t.style.display = t.id === 'lm-' + id ? 'block' : 'none';
+  });
+}
+
+// How-cards scroll-triggered staggered animation
+(function(){
+  var cards = document.querySelectorAll('.how-card');
+  if(!cards.length) return;
+  var delays = [0, 180, 360];
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      cards.forEach(function(card, i){
+        setTimeout(function(){ card.classList.add('card-visible'); }, delays[i]);
+      });
+      observer.disconnect();
+    });
+  }, {threshold: 0.2});
+  observer.observe(document.getElementById('how'));
+})();
+// ── Cookie banner ──
+function cookieAccept(){
+  localStorage.setItem('cookieConsent','all');
+  document.getElementById('cookieBanner').classList.add('hidden');
+  loadGA();
+}
+function cookieDecline(){
+  localStorage.setItem('cookieConsent','essential');
+  document.getElementById('cookieBanner').classList.add('hidden');
+}
+// Hide banner if already consented
+(function(){
+  if(localStorage.getItem('cookieConsent')){
+    var b = document.getElementById('cookieBanner');
+    if(b) b.classList.add('hidden');
+  }
+})();
+</script>
+</body>
+</html>

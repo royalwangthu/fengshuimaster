@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.0",
+    "https-proxy-agent": "^9.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}
