@@ -19,6 +19,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'No email provided' });
     }
 
+    const GROUP_ID = '184253245449832257';
+
+    // Step 1: Create/update subscriber
     const resp = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers: {
@@ -27,6 +30,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         email: email,
+        groups: [GROUP_ID],
         fields: {
           name: name || '',
           last_name: '',
