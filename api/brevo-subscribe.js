@@ -6,11 +6,10 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
 
-  const BREVO_KEY = process.env.BREVO_API_KEY;
-  const LIST_ID = parseInt(process.env.BREVO_LIST_ID || '2', 10);
+  const API_KEY = process.env.MAILERLITE_API_KEY;
 
-  if (!BREVO_KEY) {
-    return res.status(500).json({ error: 'Brevo not configured' });
+  if (!API_KEY) {
+    return res.status(500).json({ error: 'Mailerlite not configured' });
   }
 
   try {
@@ -20,37 +19,32 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'No email provided' });
     }
 
-    const resp = await fetch('https://api.brevo.com/v3/contacts', {
+    const resp = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': BREVO_KEY
+        'Authorization': `Bearer ${API_KEY}`
       },
       body: JSON.stringify({
         email: email,
-        listIds: [LIST_ID],
-        attributes: {
-          FIRSTNAME: name || '',
-          FENGSHUI_SCORE: score || '',
-          ELEMENT: element || '',
-          BIRTH_YEAR: birthYear || '',
-          SIGNUP_SOURCE: 'report'
-        },
-        updateEnabled: true
+        fields: {
+          name: name || '',
+          last_name: '',
+          fengshui_score: String(score || ''),
+          element: element || '',
+          birth_year: String(birthYear || ''),
+          signup_source: 'report'
+        }
       })
     });
 
-    if (resp.status === 204 || resp.status === 201) {
+    const data = await resp.json();
+
+    if (resp.ok || resp.status === 200 || resp.status === 201) {
       return res.status(200).json({ success: true });
     }
 
-    const data = await resp.json();
-
-    if (data.code === 'duplicate_parameter') {
-      return res.status(200).json({ success: true, existing: true });
-    }
-
-    return res.status(resp.status).json({ error: data.message || 'Brevo API error' });
+    return res.status(resp.status).json({ error: data.message || 'Mailerlite API error' });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
