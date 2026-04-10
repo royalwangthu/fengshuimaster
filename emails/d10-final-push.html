@@ -19,7 +19,7 @@
       Your Discount Expires Tonight
     </h1>
     <p style="font-size:14px;color:rgba(255,252,248,.6);line-height:1.8">
-      {{ contact.FIRSTNAME | default: "Hi" }}, this is the last time I'll mention this — I promise.
+      {$name|Hi}, this is the last time I'll mention this — I promise.
     </p>
   </td></tr>
 
@@ -40,7 +40,7 @@
     <!-- Score reminder -->
     <div style="text-align:center;padding:20px;background:rgba(226,170,58,.06);border-radius:12px;margin-bottom:20px">
       <p style="font-size:11px;color:rgba(255,252,248,.4);margin-bottom:8px">YOUR CURRENT ENERGY SCORE</p>
-      <p style="font-size:42px;font-weight:700;color:#E2AA3A;margin:0;line-height:1">{{ contact.FENGSHUI_SCORE }}</p>
+      <p style="font-size:42px;font-weight:700;color:#E2AA3A;margin:0;line-height:1">{$fengshui_score}</p>
       <p style="font-size:11px;color:rgba(255,252,248,.4);margin-top:8px">out of 100</p>
     </div>
 
@@ -55,10 +55,10 @@
   <tr><td style="background:rgba(226,170,58,.08);border:2px solid rgba(226,170,58,.3);border-radius:16px;padding:28px 32px;text-align:center">
     <p style="font-size:10px;font-weight:700;letter-spacing:2px;color:#f87171;margin-bottom:12px">⏰ EXPIRES TONIGHT AT MIDNIGHT</p>
     <div style="margin-bottom:16px">
-      <span style="font-size:16px;color:rgba(255,252,248,.35);text-decoration:line-through">$19.90</span>
-      <span style="font-size:36px;font-weight:700;color:#E2AA3A;margin-left:12px">$9.90</span>
+      <span style="font-size:16px;color:rgba(255,252,248,.35);text-decoration:line-through">$79</span>
+      <span style="font-size:36px;font-weight:700;color:#E2AA3A;margin-left:12px">$39.90</span>
     </div>
-    <a href="https://fengshuimaster.pro/dashboard.html" style="display:inline-block;padding:16px 48px;background:linear-gradient(135deg,#E2AA3A,#C49A30);color:#0A0806;text-decoration:none;border-radius:12px;font-weight:700;font-size:15px;letter-spacing:.5px;box-shadow:0 4px 24px rgba(226,170,58,.3)">Get My Full Report — $9.90 →</a>
+    <a href="https://fengshuimaster.pro/dashboard.html" style="display:inline-block;padding:16px 48px;background:linear-gradient(135deg,#E2AA3A,#C49A30);color:#0A0806;text-decoration:none;border-radius:12px;font-weight:700;font-size:15px;letter-spacing:.5px;box-shadow:0 4px 24px rgba(226,170,58,.3)">Get My Full Report — $39.90 →</a>
     <p style="font-size:11px;color:rgba(255,252,248,.3);margin-top:12px">30-day money-back guarantee</p>
   </td></tr>
 
@@ -85,7 +85,7 @@
   <tr><td style="text-align:center;padding:24px 0;border-top:1px solid rgba(226,170,58,.1)">
     <p style="font-size:10px;color:rgba(255,252,248,.25);line-height:1.8">
       FengShuiMaster · fengshuimaster.pro<br>
-      <a href="{{ unsubscribe }}" style="color:rgba(226,170,58,.4);text-decoration:underline">Unsubscribe</a>
+      <a href="{$unsubscribe}" style="color:rgba(226,170,58,.4);text-decoration:underline">Unsubscribe</a>
     </p>
   </td></tr>
 
