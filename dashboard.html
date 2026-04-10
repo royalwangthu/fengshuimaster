@@ -771,6 +771,36 @@ body{
   align-items: center;
   justify-content: center;
   animation: loadingFadeIn 0.6s ease-out;
+  overflow: hidden;
+}
+/* Floating fireflies */
+.firefly {
+  position: absolute;
+  bottom: -20px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,220,120,1) 0%, rgba(226,170,58,0.6) 40%, transparent 80%);
+  box-shadow: 0 0 10px rgba(255,220,120,0.9), 0 0 20px rgba(226,170,58,0.6), 0 0 30px rgba(226,170,58,0.3);
+  opacity: 0;
+  pointer-events: none;
+  animation: fireflyFloat linear infinite;
+}
+@keyframes fireflyFloat {
+  0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translateY(-50vh) translateX(20px) scale(1); opacity: 0.9; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-110vh) translateX(-20px) scale(0.8); opacity: 0; }
+}
+@keyframes fireflyFlicker {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.8); }
+}
+.firefly.big {
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 15px rgba(255,220,120,1), 0 0 30px rgba(226,170,58,0.7), 0 0 45px rgba(226,170,58,0.4);
 }
 .loading-page.visible { display: flex; }
 .loading-page.fading {
@@ -1421,7 +1451,8 @@ body{
 
 <!-- LOADING PAGE -->
 <div class="loading-page" id="loadingPage">
-  <div class="loading-wrap">
+  <div id="fireflyField" style="position:absolute;inset:0;pointer-events:none;z-index:0"></div>
+  <div class="loading-wrap" style="position:relative;z-index:1">
     <div class="emoji-orbit" id="emojiOrbit">
       <div class="orbit-ring"></div>
       <div class="orbit-center"><div class="orbit-inner" id="orbitCenter">☯</div></div>
@@ -1843,6 +1874,19 @@ function renderReport(data) {
   // ── 1. Show loading page (onboarding-style animation) ──
   var loadingPage = document.getElementById('loadingPage');
   loadingPage.classList.add('visible');
+
+  // Spawn floating fireflies
+  var fireflyField = document.getElementById('fireflyField');
+  if (fireflyField) {
+    for (var i = 0; i < 40; i++) {
+      var f = document.createElement('div');
+      f.className = 'firefly' + (Math.random() > 0.7 ? ' big' : '');
+      f.style.left = Math.random() * 100 + '%';
+      f.style.animationDuration = (8 + Math.random() * 8) + 's';
+      f.style.animationDelay = (Math.random() * 10) + 's';
+      fireflyField.appendChild(f);
+    }
+  }
 
   // --- Loading animation data ---
   var QUOTES = [
