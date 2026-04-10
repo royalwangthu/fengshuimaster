@@ -1495,12 +1495,7 @@ if(localStorage.getItem('cookieConsent')==='all'){loadGA();}
     position: absolute; inset: 0; z-index: 0;
     background: url('images/result-bg.jpg') center center/cover no-repeat;
   }
-  .v4-bg-overlay {
-    position: absolute; inset: 0; z-index: 1;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(8,10,12,0.55) 60%, rgba(6,8,10,0.85) 100%),
-      linear-gradient(180deg, rgba(6,8,10,0.35) 0%, transparent 40%, transparent 60%, rgba(6,8,10,0.6) 100%);
-  }
+  .v4-bg-overlay { display: none; }
   .v4-firefly-field {
     position: absolute; inset: 0; z-index: 2;
     pointer-events: none; overflow: hidden;
