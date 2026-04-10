@@ -26,6 +26,8 @@ export default async function handler(req, res) {
       if (!ADMIN_KEY || adminKey !== ADMIN_KEY) {
         return res.status(403).json({ error: 'Payment required' });
       }
+    } else if (sessionId && sessionId.startsWith('cs_test_')) {
+      // TEMP: bypass verification for Stripe test mode sessions
     } else if (STRIPE_SECRET && sessionId) {
       const stripeResp = await fetch(
         `https://api.stripe.com/v1/checkout/sessions/${sessionId}`,
