@@ -2483,7 +2483,7 @@ function renderReport(data) {
 
         hideOverlay();
         // GA4: report successfully generated
-        if (window.gtag) gtag('event', 'purchase', { event_category: 'conversion', value: 19.90, currency: 'USD', transaction_id: sessionId });
+        if (window.gtag) gtag('event', 'purchase', { event_category: 'conversion', value: 39.90, currency: 'USD', transaction_id: sessionId });
       })
       .catch(function(err) {
         console.error('FengShuiMaster attempt ' + attempt + ' error:', err);

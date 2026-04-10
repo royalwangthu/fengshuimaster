@@ -19,8 +19,8 @@
       The Ancient Secret Behind<br>Your Home's Energy
     </h1>
     <p style="font-size:14px;color:rgba(255,252,248,.6);line-height:1.8;margin-bottom:24px">
-      Hi {{ contact.FIRSTNAME | default: "there" }},<br><br>
-      Thank you for getting your Feng Shui reading! Your energy score was <strong style="color:#E2AA3A">{{ contact.FENGSHUI_SCORE }}</strong> — but what does that really mean?
+      Hi {$name|there},<br><br>
+      Thank you for getting your Feng Shui reading! Your energy score was <strong style="color:#E2AA3A">{$fengshui_score}</strong> — but what does that really mean?
     </p>
     <div style="width:80%;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(226,170,58,.3),transparent)"></div>
   </td></tr>
@@ -66,7 +66,7 @@
     </table>
 
     <p style="font-size:13px;color:rgba(255,252,248,.65);line-height:1.8">
-      Your birth year ({{ contact.BIRTH_YEAR }}) connects you to the <strong style="color:#E2AA3A">{{ contact.ELEMENT }}</strong> element. This means certain colors, materials, and room placements naturally support — or drain — your energy.
+      Your birth year ({$birth_year}) connects you to the <strong style="color:#E2AA3A">{$element}</strong> element. This means certain colors, materials, and room placements naturally support — or drain — your energy.
     </p>
   </td></tr>
 
@@ -101,7 +101,7 @@
   <tr><td style="text-align:center;padding:24px 0;border-top:1px solid rgba(226,170,58,.1)">
     <p style="font-size:10px;color:rgba(255,252,248,.25);line-height:1.8">
       FengShuiMaster · fengshuimaster.pro<br>
-      <a href="{{ unsubscribe }}" style="color:rgba(226,170,58,.4);text-decoration:underline">Unsubscribe</a>
+      <a href="{$unsubscribe}" style="color:rgba(226,170,58,.4);text-decoration:underline">Unsubscribe</a>
     </p>
   </td></tr>
 

@@ -65,7 +65,7 @@
   <!-- SCORE CALLOUT -->
   <tr><td style="background:rgba(226,170,58,.06);border:1px solid rgba(226,170,58,.2);border-radius:16px;padding:24px 32px;text-align:center">
     <p style="font-size:13px;color:rgba(255,252,248,.6);line-height:1.7;margin-bottom:12px">
-      {{ contact.FIRSTNAME | default: "Friend" }}, your energy score was <strong style="color:#E2AA3A;font-size:18px">{{ contact.FENGSHUI_SCORE }}</strong>. The Chens started at 34.
+      {$name|Friend}, your energy score was <strong style="color:#E2AA3A;font-size:18px">{$fengshui_score}</strong>. The Chens started at 34.
     </p>
     <p style="font-size:14px;color:#F0E6D0;font-weight:600">
       Imagine what fixing <em>your</em> top issues could unlock.
@@ -92,7 +92,7 @@
   <tr><td style="text-align:center;padding:24px 0;border-top:1px solid rgba(226,170,58,.1)">
     <p style="font-size:10px;color:rgba(255,252,248,.25);line-height:1.8">
       FengShuiMaster · fengshuimaster.pro<br>
-      <a href="{{ unsubscribe }}" style="color:rgba(226,170,58,.4);text-decoration:underline">Unsubscribe</a>
+      <a href="{$unsubscribe}" style="color:rgba(226,170,58,.4);text-decoration:underline">Unsubscribe</a>
     </p>
   </td></tr>
 

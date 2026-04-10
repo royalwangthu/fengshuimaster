@@ -19,7 +19,7 @@ if(localStorage.getItem('cookieConsent')==='all'){loadGA();}
 <title>FengShuiMaster — Read Your Home's Energy</title>
 <meta name="description" content="AI-powered Feng Shui analysis for your home. Upload your floor plan and get a personalized energy report with actionable remedies.">
 <meta property="og:title" content="FengShuiMaster — Read Your Home's Energy">
-<meta property="og:description" content="AI-powered Feng Shui analysis. Get your personalized home energy report for $19.90.">
+<meta property="og:description" content="AI-powered Feng Shui analysis. Get your personalized home energy report.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fengshuimaster.pro/">
 <meta name="twitter:card" content="summary">
@@ -452,8 +452,9 @@ nav{
 .blog-headline{font-family:'Fraunces',serif;font-size:clamp(26px,4.5vw,48px);line-height:1.15;color:var(--ink);margin-bottom:.8rem}
 .blog-headline em{font-style:italic;color:var(--gold)}
 .blog-sub{font-size:15px;color:var(--mu);max-width:440px;margin:0 auto;line-height:1.6}
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-@media(max-width:768px){.blog-grid{grid-template-columns:1fr;gap:1.2rem}}
+.blog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+@media(max-width:960px){.blog-grid{grid-template-columns:repeat(2,1fr);gap:1.2rem}}
+@media(max-width:640px){.blog-grid{grid-template-columns:1fr;gap:1.2rem}}
 .blog-card{
   display:flex;flex-direction:column;padding:2rem 1.8rem 1.8rem;text-decoration:none;color:var(--ink);
   transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;
@@ -488,6 +489,9 @@ nav{
 /* Colors — emerald-teal */
 .blog-card--color .blog-card-aura{background:rgba(60,190,160,.8)}
 .blog-card--color .blog-tag{color:#6ad4b8;border-color:rgba(60,190,160,.35)}
+/* Office — warm gold */
+.blog-card--office .blog-card-aura{background:rgba(210,170,58,.8)}
+.blog-card--office .blog-tag{color:#d4a83a;border-color:rgba(210,170,58,.35)}
 
 /* ── FINAL CTA ── */
 .cta-sec{
@@ -802,7 +806,7 @@ footer{
   <div class="flip-card" onclick="this.classList.toggle('flipped')">
     <div class="flip-inner">
       <div class="flip-f">
-        <div class="flip-num">$19.90</div>
+        <div class="flip-num">$39.90</div>
         <div class="flip-label">One-time Report</div>
       </div>
       <div class="flip-b">
@@ -1027,7 +1031,7 @@ footer{
       <div class="testi-stars">
         <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
       </div>
-      <p class="testi-body">I've paid hundreds for in-person feng shui consultants. This report was more detailed, half the price, and I can reference it anytime. Genuinely the best $19.90 I've spent.</p>
+      <p class="testi-body">I've paid hundreds for in-person feng shui consultants. This report was more detailed, half the price, and I can reference it anytime. Genuinely the best $39.90 I've spent.</p>
       <div class="testi-footer">
         <img class="testi-avatar-img" src="images/avatar-4.jpg" alt="Marcus L., 47">
         <div class="testi-info">
@@ -1107,6 +1111,16 @@ footer{
         <span class="blog-card-link">Read the guide <span class="blog-arrow">→</span></span>
       </div>
     </a>
+
+    <a href="blog/home-office-feng-shui-tips.html" class="g blog-card blog-card--office">
+      <div class="blog-card-aura"></div>
+      <div class="blog-card-body">
+        <span class="blog-tag">Office</span>
+        <h3 class="blog-card-title">Home Office Feng Shui Tips</h3>
+        <p class="blog-card-desc">Desk placement, lighting, and elemental balance for focus, creativity, and productive flow.</p>
+        <span class="blog-card-link">Read the guide <span class="blog-arrow">→</span></span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -1129,8 +1143,8 @@ footer{
     </div>
 
     <div class="cta-price-row">
-      <span class="cta-price-old">$89</span>
-      <span class="cta-price">$19.90</span>
+      <span class="cta-price-old">$79</span>
+      <span class="cta-price">$39.90</span>
     </div>
     <div class="cta-once">One-time · No subscription</div>
     <div class="cta-compare">Traditional in-person consultation: $200 – $500</div>
@@ -1291,7 +1305,7 @@ footer{
       </div>
 
       <h2>1. Digital Product</h2>
-      <p>FengShuiMaster provides a digital feng shui analysis service. Upon successful payment of the one-time fee of <strong>$19.90 USD</strong>, you will receive immediate access to your personalized feng shui report.</p>
+      <p>FengShuiMaster provides a digital feng shui analysis service. Upon successful payment of the one-time fee of <strong>$39.90 USD</strong>, you will receive immediate access to your personalized feng shui report.</p>
 
       <h2>2. Satisfaction Guarantee</h2>
       <p>We stand behind the quality of our reports. If you are dissatisfied for any reason, you may request a full refund within <strong>30 days</strong> of your purchase date. No explanation required.</p>
@@ -1339,7 +1353,7 @@ footer{
       <p>You must be at least 16 years of age to use our services.</p>
 
       <h2>3. Payment</h2>
-      <p>FengShuiMaster offers its analysis service for a one-time payment of <strong>$19.90 USD</strong>. All payments are processed securely through Stripe.</p>
+      <p>FengShuiMaster offers its analysis service for a one-time payment of <strong>$39.90 USD</strong>. All payments are processed securely through Stripe.</p>
 
       <h2>4. Intellectual Property</h2>
       <p>All content, design, text, graphics, algorithms, and software on FengShuiMaster are owned by or licensed to us and are protected by intellectual property laws.</p>
