@@ -1488,6 +1488,127 @@ if(localStorage.getItem('cookieConsent')==='all'){loadGA();}
     overflow-y: auto;
     padding: 2rem 1rem;
   }
+
+  /* ========== V4 MYSTIC RESULT PAGE ========== */
+  .result-page.v4 { overflow: hidden; padding: 0; }
+  .v4-bg-img {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('images/result-bg.jpg') center center/cover no-repeat;
+  }
+  .v4-bg-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(8,10,12,0.55) 60%, rgba(6,8,10,0.85) 100%),
+      linear-gradient(180deg, rgba(6,8,10,0.35) 0%, transparent 40%, transparent 60%, rgba(6,8,10,0.6) 100%);
+  }
+  .v4-firefly-field {
+    position: absolute; inset: 0; z-index: 2;
+    pointer-events: none; overflow: hidden;
+  }
+  .v4-firefly {
+    position: absolute; bottom: -30px;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,230,160,1) 0%, rgba(212,168,83,0.6) 40%, transparent 80%);
+    box-shadow: 0 0 10px rgba(255,230,160,0.9), 0 0 20px rgba(212,168,83,0.5), 0 0 30px rgba(212,168,83,0.25);
+    opacity: 0;
+    animation: v4FloatUp linear infinite;
+  }
+  .v4-firefly.big {
+    width: 6px; height: 6px;
+    box-shadow: 0 0 14px rgba(255,230,160,1), 0 0 28px rgba(212,168,83,0.6), 0 0 42px rgba(212,168,83,0.3);
+  }
+  .v4-firefly.tiny {
+    width: 2px; height: 2px;
+    box-shadow: 0 0 6px rgba(255,230,160,0.9), 0 0 12px rgba(212,168,83,0.4);
+  }
+  @keyframes v4FloatUp {
+    0%   { transform: translateY(0) translateX(0) scale(0.4); opacity: 0; }
+    8%   { opacity: 1; }
+    50%  { transform: translateY(-50vh) translateX(30px) scale(1); opacity: 0.9; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-110vh) translateX(-20px) scale(0.7); opacity: 0; }
+  }
+
+  .v4-content {
+    position: relative; z-index: 10;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 18vh 1.5rem 6vh;
+    width: 100%;
+  }
+  .v4-score {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-weight: 700;
+    font-size: clamp(110px, 22vw, 170px);
+    line-height: 0.85;
+    color: #ffffff;
+    letter-spacing: -4px;
+    position: relative;
+    text-shadow:
+      0 0 20px rgba(255,255,255,0.9),
+      0 0 40px rgba(255,255,255,0.7),
+      0 0 70px rgba(255,240,200,0.5),
+      0 0 100px rgba(255,220,160,0.35),
+      0 4px 24px rgba(0,0,0,0.7);
+    animation: v4ScoreReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes v4ScoreReveal {
+    0%   { opacity: 0; transform: scale(0.6) translateY(30px); filter: blur(20px); }
+    60%  { filter: blur(0); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+  }
+  .v4-score::after {
+    content: ''; position: absolute; inset: -30px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 65%);
+    pointer-events: none; z-index: -1;
+    animation: v4Pulse 4s ease-in-out infinite;
+  }
+  @keyframes v4Pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%      { opacity: 0.8; transform: scale(1.15); }
+  }
+  .v4-caption {
+    margin-top: auto; margin-bottom: 40px;
+    font-family: 'Fraunces', 'Playfair Display', serif;
+    font-style: italic; font-weight: 300;
+    font-size: 15px; letter-spacing: 1px;
+    color: rgba(240, 230, 208, 0.7);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+    text-align: center;
+    animation: v4FadeIn 2s 1s both;
+  }
+  @keyframes v4FadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .v4-bottom {
+    animation: v4FadeIn 2s 1.3s both;
+  }
+  .v4-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 18px 44px;
+    background: linear-gradient(135deg, rgba(212,168,83,0.95), rgba(201,149,42,0.95));
+    color: #0a0a0a;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 13px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: none; border-radius: 100px;
+    cursor: pointer;
+    box-shadow:
+      0 8px 40px rgba(212,168,83,0.4),
+      0 0 0 1px rgba(255,230,160,0.3) inset,
+      0 0 60px rgba(212,168,83,0.25);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+  .v4-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 50px rgba(212,168,83,0.55),
+      0 0 0 1px rgba(255,230,160,0.4) inset,
+      0 0 80px rgba(212,168,83,0.35);
+  }
+  /* ========== END V4 ========== */
   .result-page.visible {
     display: flex;
     animation: resultFadeIn 0.8s ease-out forwards;
@@ -2262,15 +2383,29 @@ if(localStorage.getItem('cookieConsent')==='all'){loadGA();}
 </div>
 
 <!-- RESULT PAGE — TAROT CARD REVEAL -->
-<div class="result-page" id="resultPage">
+<div class="result-page v4" id="resultPage">
+
+  <!-- V4 Mystic Background -->
+  <div class="v4-bg-img"></div>
+  <div class="v4-bg-overlay"></div>
+  <div class="v4-firefly-field" id="v4Fireflies"></div>
 
   <!-- Top-right actions -->
   <div class="result-topbar" id="resultTopbar" style="display:none">
     <a onclick="retakeReading()"><span class="tb-icon">↻</span> Retake</a>
-    <!-- History feature coming in future update -->
   </div>
 
-  <div class="card-stage">
+  <!-- V4 Content: just score + caption + CTA -->
+  <div class="v4-content" id="v4Content" style="display:none">
+    <div class="v4-score" id="v4Score">0</div>
+    <div class="v4-caption">Your home speaks — now you can listen.</div>
+    <div class="v4-bottom">
+      <button class="v4-btn" onclick="viewDashboard()">View Full Report →</button>
+    </div>
+  </div>
+
+  <!-- OLD CARD HIDDEN FOR LEGACY JS COMPAT -->
+  <div class="card-stage" style="display:none">
     <div class="card-reveal-wrap" id="cardRevealWrap">
       <div class="card-stack-1"></div>
       <div class="card-stack-2"></div>
@@ -2313,10 +2448,10 @@ if(localStorage.getItem('cookieConsent')==='all'){loadGA();}
     </div>
   </div>
 
-  <!-- tap hint -->
-  <div class="tap-hint" id="tapHint">Tap to Reveal</div>
+  <!-- tap hint (legacy - hidden) -->
+  <div class="tap-hint" id="tapHint" style="display:none">Tap to Reveal</div>
 
-  <!-- bottom content -->
+  <!-- bottom content (legacy - hidden) -->
   <div class="result-bottom" id="resultBottom" style="display:none;margin-top:10px">
     <button class="btn-report" id="btnReport" onclick="viewDashboard()">View Full Report</button>
   </div>
@@ -3369,9 +3504,33 @@ if(localStorage.getItem('cookieConsent')==='all'){loadGA();}
       document.getElementById('ctaWrapper').style.display = 'none';
       generateLocalPreview();
       populateResultCard();
+      showV4Result();
       document.getElementById('resultPage').classList.add('visible');
       window.scrollTo(0, 0);
     }, 600);
+  }
+
+  function showV4Result() {
+    // Spawn 50 slow-moving fireflies
+    var field = document.getElementById('v4Fireflies');
+    if (field && !field.dataset.spawned) {
+      field.dataset.spawned = '1';
+      for (var i = 0; i < 50; i++) {
+        var f = document.createElement('div');
+        var r = Math.random();
+        f.className = 'v4-firefly' + (r > 0.8 ? ' big' : (r < 0.35 ? ' tiny' : ''));
+        f.style.left = (Math.random() * 100) + '%';
+        f.style.animationDuration = (14 + Math.random() * 10) + 's';
+        f.style.animationDelay = (Math.random() * 18) + 's';
+        field.appendChild(f);
+      }
+    }
+    // Set score and show content
+    var scoreEl = document.getElementById('v4Score');
+    if (scoreEl && previewData) {
+      scoreEl.textContent = previewData.score || 73;
+    }
+    document.getElementById('v4Content').style.display = 'flex';
   }
 
   function generateLocalPreview() {
